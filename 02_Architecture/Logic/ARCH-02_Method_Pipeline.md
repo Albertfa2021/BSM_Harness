@@ -23,22 +23,22 @@ Review_Required: Yes
 ## Pipeline Diagram
 
 ```mermaid
-flowchart TD
-    S([Start]) --> A[Stage 0<br/>Resolve assets and environment]
-    A --> B[Stage 1<br/>Prepare static direction grid]
-    B --> C[Stage 2<br/>Build front-end bundle V, h, c_ls, c_magls]
-    C --> D[Stage 3<br/>Render baseline responses]
-    C --> E[Stage 4<br/>Assemble solver inputs]
-    E --> F[Stage 5<br/>Predict residual coefficients Delta c]
-    F --> G[Stage 6<br/>Form c_joint]
-    G --> H[Stage 7<br/>Render joint binaural responses]
-    D --> I[Stage 8<br/>Compute baseline reference metrics]
-    H --> J[Stage 9<br/>Compute joint losses and metrics]
-    I --> K[Stage 10<br/>Compare against BSM-MagLS]
+graph TD
+    S([Start]) --> A[Stage 0 Resolve assets and environment]
+    A --> B[Stage 1 Prepare static direction grid]
+    B --> C[Stage 2 Build front end bundle]
+    C --> D[Stage 3 Render baseline responses]
+    C --> E[Stage 4 Assemble solver inputs]
+    E --> F[Stage 5 Predict residual coefficients]
+    F --> G[Stage 6 Form joint coefficients]
+    G --> H[Stage 7 Render joint responses]
+    D --> I[Stage 8 Compute baseline metrics]
+    H --> J[Stage 9 Compute joint losses and metrics]
+    I --> K[Stage 10 Compare against BSM MagLS]
     J --> K
-    K --> L{Need more optimization iterations?}
+    K --> L{More optimization iterations needed}
     L -->|Yes| F
-    L -->|No| M[Stage 11<br/>Store traces, artifacts, summaries]
+    L -->|No| M[Stage 11 Store traces and summaries]
     M --> T([End])
 ```
 

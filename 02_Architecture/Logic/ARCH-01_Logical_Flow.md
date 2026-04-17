@@ -24,23 +24,23 @@ Review_Required: Yes
 ## System Flow
 
 ```mermaid
-flowchart TD
+graph TD
     S([Start]) --> A[Resolve assets and environment]
-    A --> B[Build unified front-end]
-    B --> C[Produce front-end bundle<br/>direction grid, V, h, c_ls, c_magls]
-    C --> D[Render baselines<br/>BSM-LS and BSM-MagLS]
-    C --> E[Assemble residual-solver inputs]
-    E --> F[Predict Delta c with residual MLP]
-    F --> G[Compose joint coefficients<br/>c_joint = c_magls + alpha * Delta c]
-    G --> H[Render joint binaural responses]
-    D --> I[Collect baseline outputs]
-    H --> J[Collect joint outputs]
-    I --> K[Evaluate metrics and losses]
+    A --> B[Build unified front end]
+    B --> C[Build front end bundle]
+    C --> D[Render baseline outputs]
+    C --> E[Assemble solver inputs]
+    E --> F[Predict residual coefficients]
+    F --> G[Compose joint coefficients]
+    G --> H[Render joint outputs]
+    D --> I[Evaluate baseline outputs]
+    H --> J[Evaluate joint outputs]
+    I --> K[Aggregate metrics and losses]
     J --> K
-    K --> L{Optimization converged?}
+    K --> L{Optimization converged}
     L -->|No| F
-    L -->|Yes| M[Export objective metrics<br/>ILD error, ITD proxy error, normalized magnitude error, NMSE]
-    M --> N[Register experiment traces and artifacts]
+    L -->|Yes| M[Export objective metrics]
+    M --> N[Register traces and artifacts]
     N --> T([End])
 ```
 
