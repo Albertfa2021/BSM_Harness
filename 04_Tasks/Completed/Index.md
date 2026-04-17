@@ -14,3 +14,4 @@ Review_Required: No
 # Completed Tasks Index
 
 - `TASK-0001_ILD_Auditory_Python_Replication.md`
+- `TASK-0002_Asset_Resolver_And_Environment_Validator.md`

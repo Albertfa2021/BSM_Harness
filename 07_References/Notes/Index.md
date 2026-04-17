@@ -7,10 +7,8 @@ Track: Reference
 Maturity: Stable
 Related_Docs:
   - 07_References/Open_Source_Baselines/BAS-0001_Array2Binaural.md
-Last_Updated: 2026-03-23
+Last_Updated: 2026-04-17
 Review_Required: No
 ---
 
 # Notes Index
-
-No reference notes have been added yet.

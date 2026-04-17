@@ -8,10 +8,14 @@ Maturity: Stable
 Related_Docs:
   - 04_Tasks/Backlog/Index.md
   - 00_Governance/Manifest/MANI-02_Active_Focus.md
-Last_Updated: 2026-03-23
+  - 00_Governance/Protocols/PROT-03_Session_Scoped_Subtask_Execution.md
+Last_Updated: 2026-04-17
 Review_Required: No
 ---
 
 # Active Tasks Index
 
-No active task files have been created yet.
+- `TASK-0003_Direction_Grids_And_Front_End_Bundle.md`
+- `TASK-0004_Baseline_Coefficient_Builder_And_Shared_Renderer.md`
+- `TASK-0005_Cue_Bank_And_Paper_Aligned_ITD_Core.md`
+- `TASK-0006_Residual_Solver_Loss_Loop_And_Evaluation_Export.md`

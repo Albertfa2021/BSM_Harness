@@ -20,6 +20,7 @@ Review_Required: Yes
 
 - This schema fixes semantic objects and axis meaning for Phase 01.
 - Concrete in-memory tensor order may vary in implementation, but semantic axes must remain traceable.
+- Cross-session handoff objects must reuse the canonical names in this document instead of inventing local aliases.
 
 ## Core Semantic Axes
 
@@ -29,6 +30,51 @@ Review_Required: Yes
 - `e`: ear index in `{left, right}`
 - `t`: time or lag index
 - `b`: auditory ERB band index
+
+## Cross-Session Naming Rules
+
+- Public object names used across sessions, modules, tests, and artifacts must reuse the schema names here.
+- Local scratch variables such as `x`, `tmp`, `arr`, `foo`, or `out` are acceptable only inside a short local scope.
+- They must never be promoted into:
+  - module interfaces
+  - saved artifacts
+  - session handoff notes
+  - smoke-test outputs
+
+## Canonical Suffix Rules
+
+- Use these suffixes when naming derived objects:
+  - `_ls`: least-squares baseline
+  - `_magls`: magnitude-least-squares baseline
+  - `_joint`: learned or composed joint variant
+  - `_ref`: reference target
+  - `_est`: estimated or rendered candidate
+  - `_init`: initialization value
+  - `_trace`: iteration-wise log or sequence
+  - `_summary`: aggregated export or report
+- Use `delta_` prefix for learned corrections such as `delta_c`.
+- Use explicit unit suffixes for scalar arrays and config values:
+  - `_hz`
+  - `_deg`
+  - `_samples`
+  - `_db`
+
+## Complex Value Rule
+
+- If a tensor is conceptually complex and the implementation can preserve a complex dtype, keep the canonical complex object name, for example `c_magls`.
+- If a complex tensor must be split into real channels for a model or export, name the split fields explicitly:
+  - `<name>_re`
+  - `<name>_im`
+- Do not overload a real-valued packed tensor with the same name as the complex semantic object without documenting the packing step.
+
+## Session Handoff Metadata Rule
+
+- Any saved object intended for reuse in a later session must carry or be accompanied by:
+  - `schema_version`
+  - `producer_task_id`
+  - `producer_session_id`
+  - `run_config_ref`
+- This metadata can live inside the object or in an adjacent manifest file, but it must exist before another session treats the output as authoritative.
 
 ## Core Objects
 

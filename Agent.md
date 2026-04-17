@@ -2,18 +2,32 @@
 
 本文件是根目录入口页，给新加入的 agent 或协作者一个最短上手路径。
 
+## 0. 开始前先确认环境
+
+- 本项目后续所有项目侧 Python 开发默认使用 conda 环境 `bsm_harness_py311`
+- 每次开始工作先执行：`conda activate bsm_harness_py311`
+- 不要把系统 Python 的包状态当成项目环境状态
+- 环境详情见：`06_Assets/External_Dependencies/DEP-0001_Array2Binaural_Conda_Env.md`
+
 ## 1. 先看什么
 
 每次开始工作前，按这个顺序看：
 
 1. `00_Governance/Protocols/PROT-00_Core_Protocols.md`
-2. `00_Governance/Manifest/MANI-00_Project_State.md`
-3. `00_Governance/Manifest/MANI-02_Active_Focus.md`
-4. `01_Charter/Goals/CHAR-06_Phase_01_Execution_Plan.md`
+2. `00_Governance/Protocols/PROT-04_Continuation_From_Implementation_And_Log.md`
+3. `00_Governance/Manifest/MANI-00_Project_State.md`
+4. `00_Governance/Manifest/MANI-02_Active_Focus.md`
+5. `01_Charter/Goals/CHAR-06_Phase_01_Execution_Plan.md`
 
 如果只是快速熟悉框架，再看：
 
 - `00_Governance/Framework_Quick_Guide.md`
+
+如果用户只说“按照实施文档和开发日志继续”，默认按
+
+- `00_Governance/Protocols/PROT-04_Continuation_From_Implementation_And_Log.md`
+
+执行 continuation workflow，不再要求用户重复粘贴当前任务背景。
 
 仓库 GitHub remote 当前绑定为：
 

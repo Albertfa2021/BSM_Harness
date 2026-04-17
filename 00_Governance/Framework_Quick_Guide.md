@@ -8,9 +8,10 @@ Maturity: Stable
 Related_Docs:
   - 00_Governance/Index.md
   - 00_Governance/Protocols/PROT-00_Core_Protocols.md
+  - 00_Governance/Protocols/PROT-04_Continuation_From_Implementation_And_Log.md
   - 00_Governance/Manifest/MANI-00_Project_State.md
   - 03_Sessions/Index.md
-Last_Updated: 2026-03-23
+Last_Updated: 2026-04-17
 Review_Required: No
 ---
 
@@ -140,14 +141,18 @@ Review_Required: No
 每次新一轮工作，先看这两个文件：
 
 1. `00_Governance/Protocols/PROT-00_Core_Protocols.md`
-2. `00_Governance/Manifest/MANI-00_Project_State.md`
+2. `00_Governance/Protocols/PROT-04_Continuation_From_Implementation_And_Log.md`
+3. `00_Governance/Manifest/MANI-00_Project_State.md`
 
 这样你就能快速知道：
 
 - 当前规则是什么
+- 用户说“按照实施文档和开发日志继续”时该怎么续接
 - 当前阶段是什么
 - 当前重点是什么
 - 当前基线代码在哪里
+
+如果用户只给出一句“按照实施文档和开发日志继续”，按 `PROT-04` 执行，不要求用户补写长提示词。
 
 ## 4. 最简单的日常使用流程
 

@@ -19,6 +19,29 @@ Review_Required: Yes
 ## Contract Principle
 
 - Contracts are defined at the semantic level so that implementation can change without breaking experiment traceability.
+- Cross-session interfaces must be serializable, versioned, and named with the canonical schema terms from `ARCH-03`.
+
+## Cross-Session Interface Rule
+
+- If one session produces output for a later session to consume, that output must be exposed through a declared contract in this document.
+- Ad-hoc notebook variables, unnamed dictionaries, or manually remembered shapes are not acceptable handoff interfaces.
+- Every reusable contract output must be accompanied by:
+  - `schema_version`
+  - `interface_version`
+  - `producer_task_id`
+  - `producer_session_id`
+  - `run_config_ref`
+
+## Variable Discipline Rule
+
+- Interface field names must match the canonical object names in `ARCH-03`.
+- If a module uses a packed or transformed internal representation, it must:
+  - keep the public contract name for the semantic object
+  - describe the transformation explicitly in the module or session note
+- Example:
+  - public semantic object: `c_magls`
+  - model-side packed tensor: `solver_input_packed`
+  - not acceptable: renaming `c_magls` to an undocumented generic `x`
 
 ## Contract 1. Asset Resolver
 
@@ -45,6 +68,7 @@ Review_Required: Yes
   - direction count matches all grid-dependent tensors
   - `h`, `c_ls`, and `c_magls` reference the same acoustic target configuration
   - shapes are internally consistent across frequency and ear axes
+  - exported field names match the schema names exactly
 
 ## Contract 3. Baseline Renderer
 
@@ -69,6 +93,7 @@ Review_Required: Yes
 - Required checks:
   - solver output matches `c_magls` coefficient semantics
   - no direct binaural waveform output is emitted by this module
+  - packed model inputs are documented separately from the semantic input objects
 
 ## Contract 5. Joint Coefficient Composer
 
@@ -124,3 +149,4 @@ Review_Required: Yes
   - comparison baseline is explicitly named
   - objective metrics include ILD error, ITD proxy error, normalized magnitude error, and NMSE
   - artifacts are linked back to the experiment registry
+  - any cross-session export includes version and producer metadata

@@ -15,3 +15,5 @@ Review_Required: No
 
 - `SESSION-P2-0001_ILD_Python_Replication.md`
 - `SESSION-P2-0002_Phase01_Architecture_Detailing.md`
+- `SESSION-P2-0003_Asset_Resolver_And_Environment_Validator.md`
+- `SESSION-P2-0004_Direction_Grids_And_Front_End_Bundle.md`

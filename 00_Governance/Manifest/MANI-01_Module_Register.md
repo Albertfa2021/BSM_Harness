@@ -10,7 +10,7 @@ Related_Docs:
   - 01_Charter/Index.md
   - 02_Architecture/Index.md
   - 07_References/Index.md
-Last_Updated: 2026-03-23
+Last_Updated: 2026-04-17
 Review_Required: No
 ---
 
@@ -27,3 +27,4 @@ Review_Required: No
 | `06_Assets/` | datasets, dependencies, generated artifacts | active |
 | `07_References/` | baseline code, papers, notes, terminology | active |
 | `08_Reviews/` | phase reviews and retrospectives | active |
+| `bsm/` | project-side Python implementation modules and tests | active |
