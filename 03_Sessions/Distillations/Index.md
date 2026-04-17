@@ -19,3 +19,4 @@ Create one file per formal distillation, for example `DIST-0001.md`.
 - `DIST-0001_ILD_Auditory_Python_Path.md`
 - `DIST-0002_Phase01_Architecture_Baseline.md`
 - `DIST-0003_TASK-0002_Asset_Closure_And_TASK-0003_Handoff.md`
+- `DIST-0004_TASK-0003_Closure_And_TASK-0004_Handoff.md`

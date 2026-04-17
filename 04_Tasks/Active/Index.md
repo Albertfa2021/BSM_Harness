@@ -15,7 +15,6 @@ Review_Required: No
 
 # Active Tasks Index
 
-- `TASK-0003_Direction_Grids_And_Front_End_Bundle.md`
 - `TASK-0004_Baseline_Coefficient_Builder_And_Shared_Renderer.md`
 - `TASK-0005_Cue_Bank_And_Paper_Aligned_ITD_Core.md`
 - `TASK-0006_Residual_Solver_Loss_Loop_And_Evaluation_Export.md`

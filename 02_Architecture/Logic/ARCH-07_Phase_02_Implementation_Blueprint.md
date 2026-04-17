@@ -29,9 +29,9 @@ Review_Required: Yes
 
 | Stage | Accepted reference anchor | Current realization in this repo | Status |
 | --- | --- | --- | --- |
-| Stage 0. Resolve assets and environment | `DEP-0001`, `BAS-0001` | Environment and dependency assumptions are documented, but no project-side validator exists yet | Partial |
-| Stage 1. Prepare static direction grid | `Array2Binaural` direction usage, `ARCH-03` semantic grid | Grid semantics are documented only | Not implemented |
-| Stage 2. Build front-end bundle | `Array2Binaural` front-end path, `ARCH-01`, `ARCH-04` | No project module yet exposes `grid`, `V`, `h`, `c_ls`, `c_magls` together | Not implemented |
+| Stage 0. Resolve assets and environment | `DEP-0001`, `BAS-0001` | Project-side validator exists through `bsm.phase02.asset_environment` with passing smoke coverage | Implemented |
+| Stage 1. Prepare static direction grid | `Array2Binaural` direction usage, `ARCH-03` semantic grid | Project-side optimization and evaluation grids exist through `bsm.phase02.front_end_bundle` | Implemented |
+| Stage 2. Build front-end bundle | `Array2Binaural` front-end path, `ARCH-01`, `ARCH-04` | Project-side bundle now exposes `grid`, `optimization_grid`, `V`, `h`, `c_ls`, and `c_magls` with a passing smoke command | Implemented |
 | Stage 3. Render baseline responses | `Array2Binaural` baseline rendering path | No project-side baseline renderer wrapper yet | Not implemented |
 | Stage 4. Assemble solver inputs | Internal architecture plan plus project-side tensor contracts from `ARCH-03` and `ARCH-04` | Input semantics are documented only | Not implemented |
 | Stage 5. Predict residual coefficients | `CHAR-06`, `CHAR-07` | No solver code yet | Not implemented |
@@ -56,9 +56,12 @@ Review_Required: Yes
 
 ## Consequence Of The Audit
 
-- The project has implemented one important reference branch correctly: auditory ILD analysis.
-- The project has not yet implemented the actual Phase 01 runnable loop.
-- Therefore Phase 02 must prioritize project-side wrapping and integration over adding more theoretical variants.
+- The project now has project-side closures for:
+  - asset/environment validation
+  - direction-grid preparation
+  - front-end bundle construction
+- The project has not yet implemented the full Phase 01 runnable loop because baseline rendering and downstream learning stages remain open.
+- Therefore Phase 02 must keep prioritizing project-side wrapping and integration over adding more theoretical variants.
 
 ## Strategy For Stages Without A Direct External Reference
 

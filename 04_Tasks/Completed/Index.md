@@ -15,3 +15,4 @@ Review_Required: No
 
 - `TASK-0001_ILD_Auditory_Python_Replication.md`
 - `TASK-0002_Asset_Resolver_And_Environment_Validator.md`
+- `TASK-0003_Direction_Grids_And_Front_End_Bundle.md`

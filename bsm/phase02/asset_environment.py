@@ -2,12 +2,13 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import asdict, dataclass
-from importlib import import_module
 import json
 import os
 from pathlib import Path
 import runpy
 import sys
+
+from .compat import install_scipy_sph_harm_compatibility
 
 
 REQUIRED_ENVIRONMENT_NAME = "bsm_harness_py311"
@@ -143,20 +144,6 @@ def _build_bundle(
     )
 
 
-def _install_scipy_sph_harm_compatibility() -> bool:
-    scipy_special = import_module("scipy.special")
-    if hasattr(scipy_special, "sph_harm"):
-        return False
-    if not hasattr(scipy_special, "sph_harm_y"):
-        return False
-
-    def _compat_sph_harm(m: int, n: int, theta, phi, *args, **kwargs):
-        return scipy_special.sph_harm_y(n, m, theta, phi, *args, **kwargs)
-
-    scipy_special.sph_harm = _compat_sph_harm
-    return True
-
-
 def generate_array_sh_asset(
     repo_root: Path | str = REPO_ROOT,
 ) -> tuple[str, bool]:
@@ -171,7 +158,7 @@ def generate_array_sh_asset(
     if not script_path.exists():
         raise FileNotFoundError(f"Array2Binaural preprocessing script is missing: {script_path}")
 
-    installed_compat = _install_scipy_sph_harm_compatibility()
+    installed_compat = install_scipy_sph_harm_compatibility()
     previous_cwd = Path.cwd()
     previous_mpl_backend = os.environ.get("MPLBACKEND")
     os.environ["MPLBACKEND"] = "Agg"

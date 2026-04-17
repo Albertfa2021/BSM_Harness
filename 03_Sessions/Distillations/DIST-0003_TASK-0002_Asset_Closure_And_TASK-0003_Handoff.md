@@ -8,7 +8,7 @@ Maturity: Consolidating
 Related_Docs:
   - 03_Sessions/Phase_02_Development/SESSION-P2-0003_Asset_Resolver_And_Environment_Validator.md
   - 04_Tasks/Completed/TASK-0002_Asset_Resolver_And_Environment_Validator.md
-  - 04_Tasks/Active/TASK-0003_Direction_Grids_And_Front_End_Bundle.md
+  - 04_Tasks/Completed/TASK-0003_Direction_Grids_And_Front_End_Bundle.md
   - 00_Governance/Manifest/MANI-00_Project_State.md
   - 00_Governance/Manifest/MANI-02_Active_Focus.md
   - 00_Governance/Manifest/MANI-03_Continuation_Authority.md
