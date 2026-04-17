@@ -10,9 +10,9 @@ Related_Docs:
   - 03_Sessions/Phase_01_Discovery/Index.md
   - 03_Sessions/Phase_02_Development/Index.md
   - 00_Governance/Manifest/MANI-03_Continuation_Authority.md
-  - 04_Tasks/Active/TASK-0004_Baseline_Coefficient_Builder_And_Shared_Renderer.md
-  - 03_Sessions/Phase_02_Development/SESSION-P2-0005_Baseline_Coefficient_Builder_And_Shared_Renderer.md
-  - 03_Sessions/Distillations/DIST-0004_TASK-0003_Closure_And_TASK-0004_Handoff.md
+  - 04_Tasks/Active/TASK-0005_Cue_Bank_And_Paper_Aligned_ITD_Core.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0006_Cue_Bank_And_Paper_Aligned_ITD_Core.md
+  - 03_Sessions/Distillations/DIST-0005_TASK-0004_Closure_And_TASK-0005_Handoff.md
   - 07_References/Open_Source_Baselines/BAS-0001_Array2Binaural.md
   - 07_References/Open_Source_Baselines/BAS-0002_ILD_Auditory_Method.md
   - 06_Assets/External_Dependencies/DEP-0001_Array2Binaural_Conda_Env.md
@@ -26,17 +26,17 @@ Review_Required: Yes
 ## Current Focus
 
 - Active phase is `Phase_02_Development`.
-- Active task is `TASK-0004`.
-- Active development authority is `SESSION-P2-0005`.
+- Active task is `TASK-0005`.
+- Active development authority is `SESSION-P2-0006`.
 - Continuation manifest is `MANI-03`.
-- Current runtime gate is the pending baseline-renderer smoke path built on top of the closed `TASK-0003` front-end bundle gate.
+- Current runtime gate is the pending cue-bank smoke path built on top of the closed `TASK-0004` baseline-renderer gate.
 
 ## Immediate next actions
 
 - Continue only through the authority chain recorded in `MANI-03`.
-- Keep work scoped to `TASK-0004` until the baseline renderer smoke command exists and passes.
-- Use `SESSION-P2-0005` as the active implementation log for baseline-renderer verification.
-- Treat `TASK-0003` as a closed prerequisite and reuse its smoke command whenever bundle integrity needs to be revalidated.
+- Keep work scoped to `TASK-0005` until the cue-bank smoke command exists and passes.
+- Use `SESSION-P2-0006` as the active implementation log for cue-bank and ITD-core verification.
+- Treat `TASK-0004` as a closed prerequisite and reuse its smoke command whenever renderer integrity needs to be revalidated.
 
 ## Current blocker
 
@@ -44,3 +44,4 @@ Review_Required: Yes
 - Prerequisite state:
   - `conda run -n bsm_harness_py311 python -m bsm.phase02.asset_environment smoke` passed on `2026-04-17`.
   - `conda run -n bsm_harness_py311 python -m bsm.phase02.front_end_bundle smoke` passed on `2026-04-17`.
+  - `conda run -n bsm_harness_py311 python -m bsm.phase02.baseline_renderer smoke` passed on `2026-04-17`.

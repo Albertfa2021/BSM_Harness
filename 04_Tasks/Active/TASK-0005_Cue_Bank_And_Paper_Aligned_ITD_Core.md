@@ -6,6 +6,8 @@ Phase: Phase_02_Development
 Track: Task
 Maturity: Planned
 Related_Docs:
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0006_Cue_Bank_And_Paper_Aligned_ITD_Core.md
+  - 03_Sessions/Distillations/DIST-0005_TASK-0004_Closure_And_TASK-0005_Handoff.md
   - 00_Governance/Protocols/PROT-03_Session_Scoped_Subtask_Execution.md
   - 01_Charter/Goals/CHAR-07_Phase_02_Detailed_Plan.md
   - 02_Architecture/Interfaces/ARCH-06_Module_Interfaces.md

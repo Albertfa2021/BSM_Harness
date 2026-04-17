@@ -7,12 +7,13 @@ Track: Session
 Maturity: Consolidating
 Related_Docs:
   - 00_Governance/Protocols/PROT-03_Session_Scoped_Subtask_Execution.md
-  - 04_Tasks/Active/TASK-0004_Baseline_Coefficient_Builder_And_Shared_Renderer.md
+  - 04_Tasks/Completed/TASK-0004_Baseline_Coefficient_Builder_And_Shared_Renderer.md
   - 02_Architecture/Data/ARCH-04_Input_Output_Contracts.md
   - 02_Architecture/Interfaces/ARCH-06_Module_Interfaces.md
   - 02_Architecture/Logic/ARCH-07_Phase_02_Implementation_Blueprint.md
   - 07_References/Open_Source_Baselines/Array2Binaural/compute_emagls_filters/compute_emagls2_for_rotations.py
   - 07_References/Open_Source_Baselines/Array2Binaural/ild_itd_analysis/evaluate_ilds_itds.py
+  - 03_Sessions/Distillations/DIST-0005_TASK-0004_Closure_And_TASK-0005_Handoff.md
   - 03_Sessions/Distillations/DIST-0004_TASK-0003_Closure_And_TASK-0004_Handoff.md
 Last_Updated: 2026-04-17
 Review_Required: Yes
