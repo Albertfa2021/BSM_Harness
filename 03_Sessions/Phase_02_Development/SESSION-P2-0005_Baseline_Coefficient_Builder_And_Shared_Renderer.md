@@ -4,7 +4,7 @@ Title: Baseline Coefficient Builder And Shared Renderer
 Status: Draft
 Phase: Phase_02_Development
 Track: Session
-Maturity: Planned
+Maturity: Consolidating
 Related_Docs:
   - 00_Governance/Protocols/PROT-03_Session_Scoped_Subtask_Execution.md
   - 04_Tasks/Active/TASK-0004_Baseline_Coefficient_Builder_And_Shared_Renderer.md
@@ -77,4 +77,74 @@ Review_Required: Yes
 
 - `TASK-0003` front-end smoke passed on `2026-04-17`.
 - Front-end authority remains `bsm.phase02.front_end_bundle`.
-- Implementation has not started yet in this session note.
+- `TASK-0004` implementation was completed in this session note.
+
+## Implementation Notes
+
+- Added project-side shared renderer authority in `bsm.phase02.baseline_renderer`.
+- Added project-side baseline helpers for:
+  - canonical baseline selection through `c_ls` and `c_magls`
+  - one shared renderer entry that consumes any coefficient tensor with the baseline bundle shape
+  - baseline-side metric summaries against the front-end target response `h`
+- Added CLI entry points for:
+  - `python -m bsm.phase02.baseline_renderer report`
+  - `python -m bsm.phase02.baseline_renderer smoke`
+- Added project-side coverage in `bsm.tests.test_baseline_renderer`.
+- The shared renderer now uses the front-end bundle semantics directly:
+  - input: `V[d, f, m]` and coefficients `[f, m, e]`
+  - output: response `[d, f, e]`
+- Coefficient-shape mismatch now raises an explicit error instead of coercing axes silently.
+- No cue-bank, ITD, residual solver, or joint-coefficient logic was added in this session.
+
+## Verification Results
+
+### Command 1
+
+```bash
+conda run -n bsm_harness_py311 python -m unittest bsm.tests.test_front_end_bundle bsm.tests.test_baseline_renderer
+```
+
+- Result:
+  - passed
+  - `8` tests ran successfully
+- Coverage focus:
+  - front-end bundle regression guard
+  - baseline-name resolution
+  - shared renderer acceptance for both `BSM-LS` and `BSM-MagLS`
+  - explicit coefficient-shape failure behavior
+  - smoke summary coverage for both baselines
+
+### Command 2
+
+```bash
+conda run -n bsm_harness_py311 python -m bsm.phase02.baseline_renderer smoke
+```
+
+- Result:
+  - passed
+  - rendered both `BSM-LS` and `BSM-MagLS`
+  - reported finite metric-ready outputs with no open issues
+- Recorded smoke shapes:
+  - `V`: `[72, 513, 5]`
+  - `h`: `[72, 513, 2]`
+  - `c_ls`: `[513, 5, 2]`
+  - `c_magls`: `[513, 5, 2]`
+  - rendered `BSM-LS` response: `[72, 513, 2]`
+  - rendered `BSM-MagLS` response: `[72, 513, 2]`
+- Numerical summary:
+  - all bundle tensors remained finite
+  - both rendered baseline responses remained finite
+  - smoke metrics against `h` were emitted for both baselines
+  - recorded `nmse_to_target`:
+    - `BSM-LS`: `0.6732804579872262`
+    - `BSM-MagLS`: `1.8074381736160647`
+
+## Completion Gate Result
+
+- The predeclared `TASK-0004` baseline-renderer smoke command now exists and passes.
+- The session-level completion gate for `TASK-0004` is satisfied.
+
+## Next-Step Readiness
+
+- The project-side shared renderer boundary is now stable enough for `TASK-0005` to consume.
+- Manifest and task-list promotion should wait for the next distillation or closure pass rather than being inferred directly from this session note.
