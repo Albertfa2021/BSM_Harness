@@ -19,3 +19,4 @@ Review_Required: No
 - `SESSION-P2-0004_Direction_Grids_And_Front_End_Bundle.md`
 - `SESSION-P2-0005_Baseline_Coefficient_Builder_And_Shared_Renderer.md`
 - `SESSION-P2-0006_Cue_Bank_And_Paper_Aligned_ITD_Core.md`
+- `SESSION-P2-0007_Residual_Solver_Loss_Loop_And_Evaluation_Export.md`

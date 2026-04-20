@@ -10,11 +10,13 @@ Related_Docs:
   - 02_Architecture/Logic/ARCH-07_Phase_02_Implementation_Blueprint.md
   - 00_Governance/Protocols/PROT-03_Session_Scoped_Subtask_Execution.md
   - 04_Tasks/Active/Index.md
+  - 04_Tasks/Completed/TASK-0006_Residual_Solver_Loss_Loop_And_Evaluation_Export.md
+  - 03_Sessions/Distillations/DIST-0007_TASK-0006_Closure_And_Phase02_Runnable_Loop.md
   - 05_Experiments/EXP-0001_Auditory_ILD_Python/README.md
   - 07_References/Open_Source_Baselines/BAS-0001_Array2Binaural.md
   - 07_References/Open_Source_Baselines/BAS-0002_ILD_Auditory_Method.md
   - 07_References/Papers/Interaural_Time_Difference_Loss_for_Binaural_Target_Sound_Extraction.pdf
-Last_Updated: 2026-04-17
+Last_Updated: 2026-04-20
 Review_Required: Yes
 ---
 
@@ -26,12 +28,11 @@ Review_Required: Yes
 - Record what is already implemented from the reference material and what is still missing.
 - Freeze the accepted neural-solver shape so later implementation does not drift into an ordinary flat MLP.
 
-## Current Truth On 2026-04-17
+## Current Truth On 2026-04-20
 
-- The repository is still in layout and architecture-consolidation stage.
-- The only project-side reference replication that is clearly implemented and smoke-tested is the auditory ERB-band ILD path under `05_Experiments/EXP-0001_Auditory_ILD_Python/`.
-- `Array2Binaural` is currently present as a read-only reference tree, not yet as a wrapped project-side front-end module.
-- The following accepted Phase 01 components are not yet implemented in the formal project work area:
+- The repository now has a smoke-scale project-side runnable loop.
+- `Array2Binaural` remains a read-only reference tree, with project-side wrappers in `bsm.phase02`.
+- The following accepted Phase 01 components are now implemented and smoke-tested in the formal project work area:
   - asset resolver and run validator
   - unified BSM front-end bundle builder
   - project-side `BSM-LS` and `BSM-MagLS` reproduction wrapper
@@ -39,17 +40,18 @@ Review_Required: Yes
   - residual neural solver
   - joint optimization loop
   - experiment logging and metric registry integration
+- This is a first verified implementation closure, not a final numerical-quality or generalization claim.
 
 ## Reference Realization Summary
 
 | Area | Main reference | Current project status | Phase 02 decision |
 | --- | --- | --- | --- |
-| Auditory ILD | `ILD computer method`, `BAS-0002` | Implemented in Python and smoke-tested | Promote into the future cue/loss module without rewriting the reference tree |
-| Baseline front-end | `Array2Binaural`, `BAS-0001` | Not yet wrapped as a project module | Build a project-side wrapper first, keep upstream tree read-only |
-| `BSM-LS` / `BSM-MagLS` | `Array2Binaural` | Not yet exposed through project contracts | Treat these as the first reproducibility milestone after the front-end wrapper |
-| ITD proxy | `Interaural_Time_Difference_Loss_for_Binaural_Target_Sound_Extraction` | Not yet implemented | Reproduce the paper-side GCC-PHAT cross-correlation loss path as the first project ITD implementation |
-| Joint solver | Internal plan only | Not implemented | Implement after baseline, cue, and renderer paths are stable |
-| Evaluation closure | Architecture docs only | Not implemented | Add only after baseline and joint branches share one renderer contract |
+| Auditory ILD | `ILD computer method`, `BAS-0002` | Implemented in Python and promoted into `bsm.phase02.cue_bank` | Keep the reference tree read-only and preserve ERB-band evaluation semantics |
+| Baseline front-end | `Array2Binaural`, `BAS-0001` | Wrapped through `bsm.phase02.front_end_bundle` | Keep upstream tree read-only and use project-side wrappers |
+| `BSM-LS` / `BSM-MagLS` | `Array2Binaural` | Exposed through project contracts and shared renderer | Treat as the canonical comparison baseline |
+| ITD proxy | `Interaural_Time_Difference_Loss_for_Binaural_Target_Sound_Extraction` | Implemented through GCC-PHAT sequence-MSE path | Keep as the first accepted differentiable ITD implementation |
+| Joint solver | Internal plan only | Implemented through `bsm.phase02.residual_solver` | Treat as smoke-scale closure pending review and ablation |
+| Evaluation closure | Architecture docs only | Summary and trace export implemented for `TASK-0006` | Use machine-readable exports as the source for later notebooks or Phase 03 evaluation |
 
 ## Required Anchors For The Next Implementation Pass
 

@@ -9,11 +9,10 @@ Related_Docs:
   - 04_Tasks/Backlog/Index.md
   - 00_Governance/Manifest/MANI-02_Active_Focus.md
   - 00_Governance/Protocols/PROT-03_Session_Scoped_Subtask_Execution.md
-Last_Updated: 2026-04-17
+Last_Updated: 2026-04-20
 Review_Required: No
 ---
 
 # Active Tasks Index
 
-- `TASK-0005_Cue_Bank_And_Paper_Aligned_ITD_Core.md`
-- `TASK-0006_Residual_Solver_Loss_Loop_And_Evaluation_Export.md`
+No active task files are open after the `TASK-0006` short-run optimization/export closure.

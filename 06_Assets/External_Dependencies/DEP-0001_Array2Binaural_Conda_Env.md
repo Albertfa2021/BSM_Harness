@@ -38,6 +38,13 @@ Review_Required: Yes
 - Environment `bsm_harness_py311` has been created.
 - Core baseline packages required for current development have been verified by import, including `torch`, `pyroomacoustics`, `spaudiopy`, `pyfilterbank`, `h5py`, `librosa`, and `soundfile`.
 - The environment has also been used to run `05_Experiments/EXP-0001_Auditory_ILD_Python/code/smoke_test.py` successfully.
+- On `2026-04-17`, the environment-side `torch` runtime was repaired by:
+  - removing the mixed conda `pytorch` install plus stale pip `torch` residue
+  - installing the official `torch 2.5.1+cpu` wheel
+  - restoring `llvm-openmp` so `libiomp5.so` is present in the env runtime
+- Post-repair verification in `bsm_harness_py311` now includes:
+  - `import torch`
+  - finite backward pass on the cue-bank ITD helper test
 
 ## Notes
 

@@ -12,9 +12,11 @@ Related_Docs:
   - 02_Architecture/Interfaces/ARCH-06_Module_Interfaces.md
   - 00_Governance/Protocols/PROT-03_Session_Scoped_Subtask_Execution.md
   - 04_Tasks/Active/Index.md
+  - 04_Tasks/Completed/TASK-0006_Residual_Solver_Loss_Loop_And_Evaluation_Export.md
+  - 03_Sessions/Distillations/DIST-0007_TASK-0006_Closure_And_Phase02_Runnable_Loop.md
   - 05_Experiments/EXP-0001_Auditory_ILD_Python/README.md
   - 07_References/Papers/Interaural_Time_Difference_Loss_for_Binaural_Target_Sound_Extraction.pdf
-Last_Updated: 2026-04-17
+Last_Updated: 2026-04-20
 Review_Required: Yes
 ---
 
@@ -32,15 +34,15 @@ Review_Required: Yes
 | Stage 0. Resolve assets and environment | `DEP-0001`, `BAS-0001` | Project-side validator exists through `bsm.phase02.asset_environment` with passing smoke coverage | Implemented |
 | Stage 1. Prepare static direction grid | `Array2Binaural` direction usage, `ARCH-03` semantic grid | Project-side optimization and evaluation grids exist through `bsm.phase02.front_end_bundle` | Implemented |
 | Stage 2. Build front-end bundle | `Array2Binaural` front-end path, `ARCH-01`, `ARCH-04` | Project-side bundle now exposes `grid`, `optimization_grid`, `V`, `h`, `c_ls`, and `c_magls` with a passing smoke command | Implemented |
-| Stage 3. Render baseline responses | `Array2Binaural` baseline rendering path | No project-side baseline renderer wrapper yet | Not implemented |
-| Stage 4. Assemble solver inputs | Internal architecture plan plus project-side tensor contracts from `ARCH-03` and `ARCH-04` | Input semantics are documented only | Not implemented |
-| Stage 5. Predict residual coefficients | `CHAR-06`, `CHAR-07` | No solver code yet | Not implemented |
-| Stage 6. Form joint coefficients | `CHAR-06` update rule | Formula is fixed in docs, not yet wired in code | Not implemented |
-| Stage 7. Render joint responses | Shared renderer concept in `ARCH-06` | No joint renderer entry exists yet | Not implemented |
-| Stage 8. Compute baseline metrics | `BAS-0002`, existing ILD experiment | Standalone auditory ILD path exists, but not connected to the BSM baseline path | Partial |
-| Stage 9. Compute joint losses and metrics | `BAS-0002`, ITD-loss paper Eq. (15) and Eq. (16) | ILD path exists; ITD proxy and integrated loss bank do not | Partial |
-| Stage 10. Compare against `BSM-MagLS` | `ARCH-02`, `CHAR-06` | Comparison rule is documented only | Not implemented |
-| Stage 11. Store traces and summaries | `EXP-Registry`, `Result_Tracker` | Registry exists, but no run writer exists yet | Not implemented |
+| Stage 3. Render baseline responses | `Array2Binaural` baseline rendering path | Project-side shared renderer exists through `bsm.phase02.baseline_renderer` | Implemented |
+| Stage 4. Assemble solver inputs | Internal architecture plan plus project-side tensor contracts from `ARCH-03` and `ARCH-04` | Solver input pack exists through `bsm.phase02.residual_solver.build_solver_input_pack` | Implemented |
+| Stage 5. Predict residual coefficients | `CHAR-06`, `CHAR-07` | `FCR-Mixer` residual solver exists through `bsm.phase02.residual_solver.FCRMixerResidualSolver` | Implemented |
+| Stage 6. Form joint coefficients | `CHAR-06` update rule | `compose_joint_coefficients` applies `c_joint = c_magls + alpha * delta_c` | Implemented |
+| Stage 7. Render joint responses | Shared renderer concept in `ARCH-06` | Torch joint renderer exists through `bsm.phase02.residual_solver.render_response_torch` | Implemented |
+| Stage 8. Compute baseline metrics | `BAS-0002`, existing ILD experiment | Baseline renderer and cue bank expose baseline-side metric paths | Implemented |
+| Stage 9. Compute joint losses and metrics | `BAS-0002`, ITD-loss paper Eq. (15) and Eq. (16) | Integrated loss bank runs magnitude, derivative-magnitude, ILD proxy, ITD proxy, and regularization losses | Implemented |
+| Stage 10. Compare against `BSM-MagLS` | `ARCH-02`, `CHAR-06` | TASK-0006 short-run export writes comparison summary against `BSM-MagLS` | Implemented |
+| Stage 11. Store traces and summaries | `EXP-Registry`, `Result_Tracker` | TASK-0006 writes `summary.json` and `loss_trace.jsonl` under generated artifacts | Implemented |
 
 ## File-Level Anchor Map
 
@@ -60,8 +62,14 @@ Review_Required: Yes
   - asset/environment validation
   - direction-grid preparation
   - front-end bundle construction
-- The project has not yet implemented the full Phase 01 runnable loop because baseline rendering and downstream learning stages remain open.
-- Therefore Phase 02 must keep prioritizing project-side wrapping and integration over adding more theoretical variants.
+  - baseline rendering
+  - cue-bank ILD and GCC-PHAT ITD support
+  - solver input packing
+  - residual solver forward and backward path
+  - short-run optimization and machine-readable export
+- The project now has the first smoke-scale Phase 02 runnable loop.
+- This closure is not a claim of final numerical quality, broad generalization, dynamic yaw support, or subjective quality.
+- Further work should open new tasks for review, ablation, metric quality, artifact registration, or Phase 03 evaluation.
 
 ## Strategy For Stages Without A Direct External Reference
 
@@ -332,6 +340,16 @@ Review_Required: Yes
    The ITD path must follow the paper-side GCC-PHAT cross-correlation MSE definition.
 4. `FCR-Mixer` produces finite `delta_c` and supports backpropagation.
 5. One joint optimization run exports metrics and traces against `BSM-MagLS`.
+
+## Current Implementation Closure
+
+- The minimum done definition above was satisfied by `TASK-0006` on `2026-04-20`.
+- Closure evidence is recorded in:
+  - `03_Sessions/Distillations/DIST-0007_TASK-0006_Closure_And_Phase02_Runnable_Loop.md`
+  - `04_Tasks/Completed/TASK-0006_Residual_Solver_Loss_Loop_And_Evaluation_Export.md`
+- Export artifacts are:
+  - `06_Assets/Generated_Artifacts/TASK-0006/20260420T034925Z/summary.json`
+  - `06_Assets/Generated_Artifacts/TASK-0006/20260420T034925Z/loss_trace.jsonl`
 
 ## Immediate Documentation Outcome
 

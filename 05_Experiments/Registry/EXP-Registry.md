@@ -8,7 +8,8 @@ Maturity: Exploration
 Related_Docs:
   - 05_Experiments/Registry/Result_Tracker.md
   - 06_Assets/Generated_Artifacts/Index.md
-Last_Updated: 2026-04-17
+  - 04_Tasks/Completed/TASK-0006_Residual_Solver_Loss_Loop_And_Evaluation_Export.md
+Last_Updated: 2026-04-20
 Review_Required: Yes
 ---
 
@@ -17,3 +18,4 @@ Review_Required: Yes
 | Experiment | Purpose | Status |
 | --- | --- | --- |
 | `EXP-0001_Auditory_ILD_Python/` | Python replication of the AuditoryToolbox ERB-band ILD path | active |
+| `TASK-0006` short-run residual solver smoke | First project-side residual solver, loss loop, and evaluation export closure against `BSM-MagLS` | completed |
