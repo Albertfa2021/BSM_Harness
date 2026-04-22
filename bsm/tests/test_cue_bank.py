@@ -58,8 +58,8 @@ class CueBankTests(unittest.TestCase):
             sample_rate_hz=32000,
         )
 
-        self.assertEqual(result.ild_ref.shape, (29, 2))
-        self.assertEqual(result.ild_est.shape, (29, 2))
+        self.assertEqual(result.ild_ref.shape, (23, 2))
+        self.assertEqual(result.ild_est.shape, (23, 2))
         self.assertEqual(result.gcc_phat_ref.shape, (2, 65))
         self.assertEqual(result.gcc_phat_est.shape, (2, 65))
         self.assertEqual(result.tau_samples, 32)
@@ -119,14 +119,45 @@ class CueBankTests(unittest.TestCase):
         reference_tensor = torch.from_numpy(reference_response)
         estimated_tensor = torch.tensor(estimated_response, requires_grad=True)
 
-        loss, diagnostics = compute_ild_loss_torch(reference_tensor, estimated_tensor)
+        loss, diagnostics = compute_ild_loss_torch(
+            reference_tensor,
+            estimated_tensor,
+            sample_rate_hz=32000,
+        )
         loss.backward()
 
         self.assertTrue(bool(torch.isfinite(loss).item()))
         self.assertTrue(bool(torch.isfinite(diagnostics["ild_ref_db"]).all().item()))
         self.assertTrue(bool(torch.isfinite(diagnostics["ild_est_db"]).all().item()))
+        self.assertEqual(len(diagnostics["ild_center_freq_hz"]), 23)
         self.assertIsNotNone(estimated_tensor.grad)
         self.assertTrue(bool(torch.isfinite(estimated_tensor.grad).all().item()))
+
+    def test_torch_ild_loss_matches_cue_bank_rms_ild_metric(self) -> None:
+        try:
+            torch = importlib.import_module("torch")
+        except Exception as exc:  # pragma: no cover - environment dependent
+            self.skipTest(f"Torch is unavailable in the active environment: {exc}")
+        reference_response, estimated_response = _build_synthetic_response_pair()
+
+        reference_tensor = torch.from_numpy(reference_response)
+        estimated_tensor = torch.from_numpy(estimated_response)
+        ild_loss, _ = compute_ild_loss_torch(
+            reference_tensor,
+            estimated_tensor,
+            sample_rate_hz=32000,
+        )
+        cue_result = build_cue_bank(
+            reference_response,
+            estimated_response,
+            sample_rate_hz=32000,
+        )
+
+        self.assertAlmostEqual(
+            float(torch.sqrt(ild_loss).item()),
+            float(cue_result.metrics.ild_error_db),
+            places=6,
+        )
 
     def test_smoke_report_passes_on_simple_examples(self) -> None:
         report = smoke_cue_bank(sample_rate_hz=32000)

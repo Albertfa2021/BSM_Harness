@@ -1,0 +1,61 @@
+{
+  "comparison_baselines": [
+    {
+      "baseline_name": "BSM-MagLS",
+      "coefficient_equal_to_front_end_magls": true,
+      "composite_metric": 14.596449488291642,
+      "metric_summary": {
+        "ild_error": 12.72058527441395,
+        "itd_proxy_error": 0.02620715039960546,
+        "nmse": 1.3708966970443726,
+        "normalized_magnitude_error": 0.47876036643371495
+      }
+    },
+    {
+      "baseline_name": "saved_aligned_ypr_eMagLS_reference",
+      "coefficient_equal_to_front_end_magls": true,
+      "composite_metric": 14.596449488291642,
+      "metric_summary": {
+        "ild_error": 12.72058527441395,
+        "itd_proxy_error": 0.02620715039960546,
+        "nmse": 1.3708966970443726,
+        "normalized_magnitude_error": 0.47876036643371495
+      }
+    }
+  ],
+  "concise_retention_verdict": "retain_learned_checkpoint",
+  "interface_version": "1",
+  "producer_session_id": "SESSION-P2-0011",
+  "producer_task_id": "TASK-0009",
+  "retained_checkpoint": "checkpoints/best_composite.pt",
+  "retained_composite_metric": 13.703043833116114,
+  "retained_metric_summary": {
+    "ild_error": 11.837576944478174,
+    "itd_proxy_error": 0.026025286649617157,
+    "nmse": 1.3936387300491333,
+    "normalized_magnitude_error": 0.4458028719391905
+  },
+  "retained_run_id": "T09-I2-y0-s3401",
+  "run_config_ref": "phase02/task09_planned_optimization_campaign",
+  "schema_version": "1",
+  "selected_orientation": {
+    "c_ls_shape": [
+      129,
+      5,
+      2
+    ],
+    "c_ls_source": "same_as_saved_array2binaural_aligned_ypr_magls; saved aligned-ypr LS reference is not present",
+    "c_magls_shape": [
+      129,
+      5,
+      2
+    ],
+    "c_magls_source": "saved_array2binaural_aligned_ypr_runtime_artifact",
+    "coefficient_axis_semantics": "[frequency, microphone, ear]",
+    "pitch_deg": 0,
+    "reference_path": "/home/gsy/Documents/NN_binaural_matching/07_References/Open_Source_Baselines/Array2Binaural/compute_emagls_filters/emagls_32kHz_dft_aligned_ypr_0_0_0.npy",
+    "reference_sha256": "293b39b192f28b301e765e58adbbe4be0793d0884cd5e766c462a37b5c59c428",
+    "roll_deg": 0,
+    "yaw_deg": 0
+  }
+}

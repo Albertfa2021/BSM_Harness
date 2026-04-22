@@ -2,10 +2,8 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import dataclass
-import importlib.util
 import json
 from pathlib import Path
-from types import ModuleType
 from typing import Any
 
 import numpy as np
@@ -25,14 +23,9 @@ DEFAULT_PRODUCER_TASK_ID = "TASK-0005"
 DEFAULT_PRODUCER_SESSION_ID = "SESSION-P2-0006"
 DEFAULT_RUN_CONFIG_REF = "phase02/default_cue_bank"
 DEFAULT_TAU_SECONDS = 0.001
-DEFAULT_ILD_NUM_BANDS = 29
-DEFAULT_ILD_LOW_FREQ_HZ = 50.0
-DEFAULT_ILD_HIGH_FREQ_HZ = 6000.0
-AUDITORY_ILD_MODULE_PATH = (
-    REPO_ROOT / "05_Experiments/EXP-0001_Auditory_ILD_Python/code/auditory_ild.py"
-)
-
-_AUDITORY_ILD_MODULE: ModuleType | None = None
+DEFAULT_ILD_NUM_BANDS = 23
+DEFAULT_ILD_LOW_FREQ_HZ = 1500.0
+DEFAULT_ILD_HIGH_FREQ_HZ = 20000.0
 _TORCH_IMPORT: Any | None = None
 
 
@@ -101,23 +94,6 @@ class CueBankResult:
             },
             "metrics": self.metrics.to_dict(),
         }
-
-
-def _load_auditory_ild_module() -> ModuleType:
-    global _AUDITORY_ILD_MODULE
-    if _AUDITORY_ILD_MODULE is None:
-        spec = importlib.util.spec_from_file_location(
-            "bsm_phase02_auditory_ild_reference",
-            AUDITORY_ILD_MODULE_PATH,
-        )
-        if spec is None or spec.loader is None:
-            raise RuntimeError(
-                f"Could not load auditory ILD reference module from {AUDITORY_ILD_MODULE_PATH}."
-            )
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-        _AUDITORY_ILD_MODULE = module
-    return _AUDITORY_ILD_MODULE
 
 
 def _get_torch_module() -> Any:
@@ -216,38 +192,107 @@ def _gcc_phat_window_numpy(
     return np.asarray(window, dtype=np.float64), peak_lag
 
 
+def _resolve_ild_band_configuration(
+    *,
+    sample_rate_hz: int,
+    num_bands: int,
+    low_freq_hz: float,
+    high_freq_hz: float,
+) -> tuple[np.ndarray, np.ndarray]:
+    if sample_rate_hz <= 0:
+        raise ValueError("sample_rate_hz must be positive.")
+    if num_bands <= 0:
+        raise ValueError("num_bands must be positive.")
+    nyquist_hz = sample_rate_hz / 2.0
+    if low_freq_hz <= 0.0 or low_freq_hz >= nyquist_hz:
+        raise ValueError("low_freq_hz must be inside (0, sample_rate_hz / 2).")
+    resolved_high_freq_hz = min(high_freq_hz, nyquist_hz)
+    if resolved_high_freq_hz <= low_freq_hz:
+        raise ValueError(
+            "ILD band upper bound must be greater than the lower bound after Nyquist clipping."
+        )
+    center_freq_hz = np.geomspace(low_freq_hz, resolved_high_freq_hz, num_bands).astype(np.float64)
+    edge_freq_hz = np.empty(num_bands + 1, dtype=np.float64)
+    edge_freq_hz[0] = low_freq_hz
+    edge_freq_hz[-1] = resolved_high_freq_hz
+    if num_bands > 1:
+        edge_freq_hz[1:-1] = np.sqrt(center_freq_hz[:-1] * center_freq_hz[1:])
+    return center_freq_hz, edge_freq_hz
+
+
+def _build_ild_band_weights(
+    *,
+    frequency_count: int,
+    sample_rate_hz: int,
+    num_bands: int,
+    low_freq_hz: float,
+    high_freq_hz: float,
+) -> tuple[np.ndarray, np.ndarray]:
+    if frequency_count < 2:
+        raise ValueError("Expected at least two frequency bins for ILD band construction.")
+    center_freq_hz, edge_freq_hz = _resolve_ild_band_configuration(
+        sample_rate_hz=sample_rate_hz,
+        num_bands=num_bands,
+        low_freq_hz=low_freq_hz,
+        high_freq_hz=high_freq_hz,
+    )
+    frequency_hz = np.arange(frequency_count, dtype=np.float64) / ((frequency_count - 1) * 2.0)
+    frequency_hz *= sample_rate_hz
+    valid_mask = (frequency_hz >= edge_freq_hz[0]) & (frequency_hz <= edge_freq_hz[-1])
+    valid_indices = np.flatnonzero(valid_mask)
+    if valid_indices.size == 0:
+        raise ValueError("No FFT bins fall inside the requested ILD frequency range.")
+
+    weights = np.zeros((num_bands, frequency_count), dtype=np.float64)
+    for band_index in range(num_bands):
+        lower_edge = edge_freq_hz[band_index]
+        upper_edge = edge_freq_hz[band_index + 1]
+        if band_index == num_bands - 1:
+            band_mask = valid_mask & (frequency_hz >= lower_edge) & (frequency_hz <= upper_edge)
+        else:
+            band_mask = valid_mask & (frequency_hz >= lower_edge) & (frequency_hz < upper_edge)
+        band_indices = np.flatnonzero(band_mask)
+        if band_indices.size == 0:
+            nearest_valid_index = valid_indices[
+                int(np.argmin(np.abs(frequency_hz[valid_indices] - center_freq_hz[band_index])))
+            ]
+            weights[band_index, nearest_valid_index] = 1.0
+        else:
+            weights[band_index, band_indices] = 1.0
+    return center_freq_hz, weights
+
+
 def _compute_ild_cues(
-    reference_time_response: np.ndarray,
-    estimated_time_response: np.ndarray,
+    reference_response: np.ndarray,
+    estimated_response: np.ndarray,
     *,
     sample_rate_hz: int,
     num_bands: int,
     low_freq_hz: float,
     high_freq_hz: float,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    auditory_ild = _load_auditory_ild_module()
-    erb_center_freq_hz, filter_coeffs = auditory_ild.design_ild_filterbank(
-        sample_rate_hz,
+    reference_array = _require_response_shape(reference_response)
+    estimated_array = _require_response_shape(estimated_response)
+    if reference_array.shape != estimated_array.shape:
+        raise ValueError("Reference and estimated responses must share the same shape.")
+    ild_center_freq_hz, weights = _build_ild_band_weights(
+        frequency_count=reference_array.shape[1],
+        sample_rate_hz=sample_rate_hz,
         num_bands=num_bands,
         low_freq_hz=low_freq_hz,
         high_freq_hz=high_freq_hz,
     )
-    direction_count = reference_time_response.shape[0]
-    ild_ref = np.empty((erb_center_freq_hz.shape[0], direction_count), dtype=np.float64)
-    ild_est = np.empty_like(ild_ref)
-    for direction_index in range(direction_count):
-        ild_ref[:, direction_index] = auditory_ild.compute_band_ild_db(
-            reference_time_response[direction_index, :, 0],
-            reference_time_response[direction_index, :, 1],
-            filter_coeffs,
-        )
-        ild_est[:, direction_index] = auditory_ild.compute_band_ild_db(
-            estimated_time_response[direction_index, :, 0],
-            estimated_time_response[direction_index, :, 1],
-            filter_coeffs,
-        )
+    reference_power = np.abs(reference_array) ** 2
+    estimated_power = np.abs(estimated_array) ** 2
+    eps = 1e-12
+    left_ref = np.einsum("bf,df->bd", weights, reference_power[:, :, 0], optimize=True)
+    right_ref = np.einsum("bf,df->bd", weights, reference_power[:, :, 1], optimize=True)
+    left_est = np.einsum("bf,df->bd", weights, estimated_power[:, :, 0], optimize=True)
+    right_est = np.einsum("bf,df->bd", weights, estimated_power[:, :, 1], optimize=True)
+    ild_ref = 10.0 * np.log10((left_ref + eps) / (right_ref + eps))
+    ild_est = 10.0 * np.log10((left_est + eps) / (right_est + eps))
     return (
-        np.asarray(erb_center_freq_hz, dtype=np.float64),
+        np.asarray(ild_center_freq_hz, dtype=np.float64),
         ild_ref,
         ild_est,
     )
@@ -314,8 +359,8 @@ def build_cue_bank(
         )
 
     erb_center_freq_hz, ild_ref, ild_est = _compute_ild_cues(
-        reference_time_response,
-        estimated_time_response,
+        reference_response,
+        estimated_response,
         sample_rate_hz=sample_rate_hz,
         num_bands=ild_num_bands,
         low_freq_hz=ild_low_freq_hz,
@@ -329,7 +374,7 @@ def build_cue_bank(
         lowpass_cutoff_hz=itd_lowpass_cutoff_hz,
     )
     metrics = CueBankMetrics(
-        ild_error_db=float(np.mean(np.abs(ild_est - ild_ref))),
+        ild_error_db=float(np.sqrt(np.mean((ild_est - ild_ref) ** 2))),
         itd_proxy_error=float(np.mean((gcc_phat_est - gcc_phat_ref) ** 2)),
         mean_ref_itd_lag_samples=float(np.mean(ref_peak_lags)),
         mean_est_itd_lag_samples=float(np.mean(est_peak_lags)),
@@ -411,13 +456,16 @@ def compute_ild_loss_torch(
     reference_response: Any,
     estimated_response: Any,
     *,
+    sample_rate_hz: int,
+    ild_num_bands: int = DEFAULT_ILD_NUM_BANDS,
+    ild_low_freq_hz: float = DEFAULT_ILD_LOW_FREQ_HZ,
+    ild_high_freq_hz: float = DEFAULT_ILD_HIGH_FREQ_HZ,
     eps: float = 1e-12,
 ) -> tuple[Any, dict[str, Any]]:
-    """Return a differentiable broadband ILD proxy for optimization loops.
+    """Return a differentiable paper-aligned narrow-band ILD loss.
 
-    The machine-readable evaluation path still uses the ERB-band auditory ILD
-    implementation in ``build_cue_bank``. This helper exists so TASK-0006 can
-    keep ILD in the autograd loss loop without duplicating cue-bank logic.
+    The repository runs at 32 kHz, so the requested upper ILD bound is clipped
+    at Nyquist when the paper's wider band is unavailable in the current setup.
     """
 
     torch = _get_torch_module()
@@ -429,21 +477,27 @@ def compute_ild_loss_torch(
         raise ValueError("Reference and estimated response tensors must share the same shape.")
     if reference_response.shape[-1] != 2:
         raise ValueError("Expected ear axis size 2.")
-
-    fft_size = (reference_response.shape[1] - 1) * 2
-
-    def _broadband_ild_db(response_tensor: Any) -> Any:
-        time_response = torch.fft.irfft(response_tensor, n=fft_size, dim=1)
-        left_power = torch.mean(time_response[:, :, 0] ** 2, dim=1)
-        right_power = torch.mean(time_response[:, :, 1] ** 2, dim=1)
-        return 10.0 * torch.log10((left_power + eps) / (right_power + eps))
-
-    ild_ref = _broadband_ild_db(reference_response)
-    ild_est = _broadband_ild_db(estimated_response)
+    ild_center_freq_hz, weights = _build_ild_band_weights(
+        frequency_count=int(reference_response.shape[1]),
+        sample_rate_hz=sample_rate_hz,
+        num_bands=ild_num_bands,
+        low_freq_hz=ild_low_freq_hz,
+        high_freq_hz=ild_high_freq_hz,
+    )
+    weights_tensor = torch.as_tensor(weights, dtype=reference_response.real.dtype, device=reference_response.device)
+    reference_power = torch.abs(reference_response) ** 2
+    estimated_power = torch.abs(estimated_response) ** 2
+    left_ref = torch.einsum("bf,df->bd", weights_tensor, reference_power[:, :, 0])
+    right_ref = torch.einsum("bf,df->bd", weights_tensor, reference_power[:, :, 1])
+    left_est = torch.einsum("bf,df->bd", weights_tensor, estimated_power[:, :, 0])
+    right_est = torch.einsum("bf,df->bd", weights_tensor, estimated_power[:, :, 1])
+    ild_ref = 10.0 * torch.log10((left_ref + eps) / (right_ref + eps))
+    ild_est = 10.0 * torch.log10((left_est + eps) / (right_est + eps))
     loss = torch.mean((ild_est - ild_ref) ** 2)
     return loss, {
         "ild_ref_db": ild_ref,
         "ild_est_db": ild_est,
+        "ild_center_freq_hz": ild_center_freq_hz,
     }
 
 

@@ -1,0 +1,59 @@
+{
+  "artifact_dir": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0007/20260420T083829Z",
+  "artifact_refs": {
+    "audio_dir": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0007/20260420T083829Z/audio",
+    "audio_manifest": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0007/20260420T083829Z/audio_manifest.json",
+    "cue_metrics": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0007/20260420T083829Z/cue_metrics.json",
+    "listening_notes": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0007/20260420T083829Z/listening_notes.md",
+    "parity_metrics": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0007/20260420T083829Z/parity_metrics.json",
+    "render_metrics": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0007/20260420T083829Z/render_metrics.json",
+    "validation_summary": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0007/20260420T083829Z/validation_summary.json"
+  },
+  "blockers": [
+    {
+      "gate": "coefficient_parity",
+      "message": "Project BSM-MagLS coefficients do not pass direct parity against the saved Array2Binaural eMagLS reference after explicit [frequency, microphone, ear] canonicalization. Training remains blocked until the mismatch is repaired or accepted with a narrowed cause."
+    },
+    {
+      "gate": "human_listening",
+      "message": "Generated listening notes still require a human headphone pass for channel swap, direction, coloration, ITD stability, level balance, and artifacts."
+    }
+  ],
+  "gate_status": [
+    {
+      "name": "environment_and_assets",
+      "ok": true
+    },
+    {
+      "name": "coefficient_parity",
+      "ok": false
+    },
+    {
+      "name": "renderer_parity",
+      "ok": true
+    },
+    {
+      "name": "cue_bank",
+      "ok": true
+    },
+    {
+      "name": "solver_export_readiness",
+      "ok": true
+    },
+    {
+      "name": "listening_audio",
+      "ok": true
+    },
+    {
+      "name": "human_listening",
+      "ok": false
+    }
+  ],
+  "interface_version": "1",
+  "ok": false,
+  "producer_session_id": "SESSION-P2-0008",
+  "producer_task_id": "TASK-0007",
+  "run_config_ref": "phase02/pre_training_correctness_validation",
+  "schema_version": "1",
+  "training_allowed": false
+}

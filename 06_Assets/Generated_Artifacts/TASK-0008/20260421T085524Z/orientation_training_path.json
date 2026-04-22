@@ -1,0 +1,135 @@
+{
+  "blocking_issues": [],
+  "interface_version": "1",
+  "loss_trace_path": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0008/20260421T085524Z/loss_trace.jsonl",
+  "loss_weights": {
+    "dmag": 0.25,
+    "ild": 0.02,
+    "itd": 0.05,
+    "mag": 1.0,
+    "reg": 0.01
+  },
+  "metric_summary": {
+    "ild_error": 9.372719879973232,
+    "itd_proxy_error": 0.018850489522542212,
+    "nmse": 1.636918544769287,
+    "normalized_magnitude_error": 0.34547776114508993
+  },
+  "orientation_bank_yaws_deg": [
+    0,
+    90
+  ],
+  "producer_session_id": "TASK-0008_MACHINE_ACCEPTANCE",
+  "producer_task_id": "TASK-0008",
+  "run_config_ref": "phase02/orientation_training_path_smoke",
+  "schema_version": "1",
+  "selected_orientation": {
+    "c_ls_shape": [
+      65,
+      5,
+      2
+    ],
+    "c_ls_source": "same_as_saved_array2binaural_aligned_ypr_magls; saved aligned-ypr LS reference is not present",
+    "c_magls_shape": [
+      65,
+      5,
+      2
+    ],
+    "c_magls_source": "saved_array2binaural_aligned_ypr_runtime_artifact",
+    "coefficient_axis_semantics": "[frequency, microphone, ear]",
+    "pitch_deg": 0,
+    "reference_path": "/home/gsy/Documents/NN_binaural_matching/07_References/Open_Source_Baselines/Array2Binaural/compute_emagls_filters/emagls_32kHz_dft_aligned_ypr_90_0_0.npy",
+    "reference_sha256": "c6ca745c04465ca5194590d504896f6e4a03ea11cf35d1e05a7100b1534da067",
+    "roll_deg": 0,
+    "yaw_deg": 90
+  },
+  "solver_config": {
+    "alpha_init": 0.15,
+    "alpha_max": 0.35,
+    "block_count": 2,
+    "hidden_dim": 24,
+    "include_front_end_energy_descriptor": false,
+    "rank": 4
+  },
+  "solver_input_summary": {
+    "c_ls_shape": [
+      65,
+      5,
+      2
+    ],
+    "c_magls_minus_c_ls_shape": [
+      65,
+      5,
+      2
+    ],
+    "c_magls_shape": [
+      65,
+      5,
+      2
+    ],
+    "channel_names": [
+      "c_ls_left_re",
+      "c_ls_left_im",
+      "c_ls_right_re",
+      "c_ls_right_im",
+      "c_magls_left_re",
+      "c_magls_left_im",
+      "c_magls_right_re",
+      "c_magls_right_im",
+      "c_magls_minus_c_ls_left_re",
+      "c_magls_minus_c_ls_left_im",
+      "c_magls_minus_c_ls_right_re",
+      "c_magls_minus_c_ls_right_im",
+      "normalized_frequency_index",
+      "normalized_coefficient_index"
+    ],
+    "finite": {
+      "c_ls": true,
+      "c_magls": true,
+      "c_magls_minus_c_ls": true,
+      "normalized_coefficient_index": true,
+      "normalized_frequency_index": true,
+      "solver_input_packed": true
+    },
+    "interface_version": "1",
+    "normalized_coefficient_index_shape": [
+      1,
+      5
+    ],
+    "normalized_frequency_index_shape": [
+      65,
+      1
+    ],
+    "producer_session_id": "TASK-0008_MACHINE_ACCEPTANCE",
+    "producer_task_id": "TASK-0008",
+    "run_config_ref": "phase02/orientation_training_path_smoke",
+    "schema_version": "1",
+    "selected_orientation": {
+      "c_ls_shape": [
+        65,
+        5,
+        2
+      ],
+      "c_ls_source": "same_as_saved_array2binaural_aligned_ypr_magls; saved aligned-ypr LS reference is not present",
+      "c_magls_shape": [
+        65,
+        5,
+        2
+      ],
+      "c_magls_source": "saved_array2binaural_aligned_ypr_runtime_artifact",
+      "coefficient_axis_semantics": "[frequency, microphone, ear]",
+      "pitch_deg": 0,
+      "reference_path": "/home/gsy/Documents/NN_binaural_matching/07_References/Open_Source_Baselines/Array2Binaural/compute_emagls_filters/emagls_32kHz_dft_aligned_ypr_90_0_0.npy",
+      "reference_sha256": "c6ca745c04465ca5194590d504896f6e4a03ea11cf35d1e05a7100b1534da067",
+      "roll_deg": 0,
+      "yaw_deg": 90
+    },
+    "solver_input_packed_shape": [
+      65,
+      5,
+      14
+    ]
+  },
+  "summary_path": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0008/20260421T085524Z/summary.json",
+  "task09_ready": true
+}

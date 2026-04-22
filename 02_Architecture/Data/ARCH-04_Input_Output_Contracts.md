@@ -10,7 +10,8 @@ Related_Docs:
   - 01_Charter/Goals/CHAR-06_Phase_01_Execution_Plan.md
   - 02_Architecture/Data/ARCH-03_Data_Schema.md
   - 06_Assets/Generated_Artifacts/Index.md
-Last_Updated: 2026-04-17
+  - 04_Tasks/Active/TASK-0008_Orientation_Coefficient_Bank_And_Training_Path.md
+Last_Updated: 2026-04-21
 Review_Required: Yes
 ---
 
@@ -70,6 +71,41 @@ Review_Required: Yes
   - shapes are internally consistent across frequency and ear axes
   - exported field names match the schema names exactly
 
+## Contract 2A. Orientation Coefficient Bank
+
+- Input:
+  - orientation grid or requested yaw/pitch/roll
+  - front-end asset bundle
+  - coefficient authority selection
+  - DNN-solver configuration for iMagLS entries
+- Output:
+  - orientation-keyed coefficient bank
+  - each coefficient entry has canonical shape `[frequency, microphone, ear]`
+  - each entry records:
+    - `yaw_deg`
+    - `pitch_deg`
+    - `roll_deg`
+    - `coefficient_source`
+    - `solver_source`
+    - `reference_path`, when loaded from a saved reference
+    - `validation_metrics`
+- Selection contract:
+  - static default callers may continue to consume `front_end_bundle.c_magls` as yaw `0`
+  - any rotation-specific caller must select from the orientation bank
+  - exact yaw selection is the accepted TASK-0008 policy for yaw `0` and yaw `90`
+  - unavailable yaw values must fail loudly rather than falling back to yaw `0`
+- Required checks:
+  - yaw `0` entry preserves the saved aligned-ypr coefficient parity contract
+  - yaw `90` entry is not silently substituted with yaw `0`
+  - `c_ls`, `c_magls`, and any `c_imagls` entry for a given orientation use compatible source semantics
+  - DNN-generated iMagLS coefficients are precomputed and exported before playback/inference
+  - playback/inference selects coefficients from head-tracker yaw/pitch/roll state instead of running online optimization
+- Current implementation status:
+  - saved aligned-ypr eMagLS yaw `0` and yaw `90` entries are available through `front_end_bundle.orientation_coefficients`
+  - exact yaw selection is available through `select_orientation_coefficients(...)`
+  - BSM-iMagLS DNN-generated entries are not implemented yet and must be added as a later coefficient type in the bank
+  - `TASK-0008` is responsible for wiring selected orientation entries through the neural training-path smoke and judging short-run optimization quality before `TASK-0009`
+
 ## Contract 3. Baseline Renderer
 
 - Input:
@@ -94,6 +130,8 @@ Review_Required: Yes
   - solver output matches `c_magls` coefficient semantics
   - no direct binaural waveform output is emitted by this module
   - packed model inputs are documented separately from the semantic input objects
+  - for head-tracked BSM-iMagLS, each orientation is solved as its own coefficient-entry case unless a later experiment validates a global orientation-conditioned solver
+  - TASK-0008 training-path smoke must prove that packed `c_magls_*` channels reconstruct the selected orientation entry, not an implicit static yaw `0` coefficient object
 
 ## Contract 5. Joint Coefficient Composer
 
@@ -133,6 +171,7 @@ Review_Required: Yes
   - loss terms are finite
   - ILD path uses ERB-band auditory analysis semantics
   - ITD path uses the accepted Phase 01 differentiable proxy
+  - TASK-0008 must record whether the selected-orientation short run shows acceptable smoke-scale optimization quality, not merely finite execution
 
 ## Contract 8. Evaluation And Logging
 
@@ -150,3 +189,6 @@ Review_Required: Yes
   - objective metrics include ILD error, ITD proxy error, normalized magnitude error, and NMSE
   - artifacts are linked back to the experiment registry
   - any cross-session export includes version and producer metadata
+  - orientation-aware runs must export selected yaw/pitch/roll, coefficient source metadata, available orientation-bank yaws, solver input channel names, and loss weights
+  - TASK-0008 exports must also include a short-run quality conclusion or the raw fields needed to make that conclusion (`initial_loss_total`, `final_loss_total`, `selected_iteration`, `loss_reduced`)
+  - large-run checkpointing, run matrices, and detailed optimization logs are owned by `TASK-0009`, not by the TASK-0008 smoke contract

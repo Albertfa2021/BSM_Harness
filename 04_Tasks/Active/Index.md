@@ -9,10 +9,17 @@ Related_Docs:
   - 04_Tasks/Backlog/Index.md
   - 00_Governance/Manifest/MANI-02_Active_Focus.md
   - 00_Governance/Protocols/PROT-03_Session_Scoped_Subtask_Execution.md
-Last_Updated: 2026-04-20
+  - 04_Tasks/Active/TASK-0007_Pre_Training_Correctness_Validation.md
+  - 04_Tasks/Active/TASK-0007A_eMagLS_Coefficient_Parity_Blocker.md
+  - 04_Tasks/Active/TASK-0008_Orientation_Coefficient_Bank_And_Training_Path.md
+  - 04_Tasks/Active/TASK-0009_Planned_Neural_Optimization_Campaign.md
+Last_Updated: 2026-04-21
 Review_Required: No
 ---
 
 # Active Tasks Index
 
-No active task files are open after the `TASK-0006` short-run optimization/export closure.
+- `TASK-0007_Pre_Training_Correctness_Validation.md`
+- `TASK-0007A_eMagLS_Coefficient_Parity_Blocker.md`
+- `TASK-0008_Orientation_Coefficient_Bank_And_Training_Path.md`
+- `TASK-0009_Planned_Neural_Optimization_Campaign.md`

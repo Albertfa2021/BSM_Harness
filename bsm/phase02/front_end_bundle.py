@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import argparse
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import json
 from pathlib import Path
 
@@ -18,6 +18,14 @@ from .asset_environment import (
     AssetBundle,
     resolve_asset_bundle,
 )
+from .array2binaural_emagls import (
+    ARRAY_SOURCE_SAMPLE_RATE_HZ,
+    CANONICAL_COEFFICIENT_AXIS_SEMANTICS,
+    EXPORT_FREQUENCY_BINS,
+    NFFT as ARRAY2BINAURAL_EMAGLS_NFFT,
+    COMPUTE_SAMPLE_RATE_HZ as ARRAY2BINAURAL_EMAGLS_COMPUTE_SAMPLE_RATE_HZ,
+    load_saved_aligned_ypr_emagls_reference_details,
+)
 from .compat import install_scipy_sph_harm_compatibility
 
 
@@ -32,6 +40,47 @@ DEFAULT_EVALUATION_STEP_DEG = 5
 DEFAULT_ARRAY_SH_DELAY_SAMPLES = 22
 DEFAULT_HRTF_ORDER = 5
 DEFAULT_ARRAY_ORDER = 25
+DEFAULT_EMAGLS_REFERENCE_YAW_DEG = 0
+DEFAULT_ORIENTATION_BANK_YAWS_DEG = (0, 90)
+SAVED_ALIGNED_YPR_MAGLS_SOURCE = "saved_array2binaural_aligned_ypr_runtime_artifact"
+SAME_AS_MAGLS_LS_SOURCE = (
+    "same_as_saved_array2binaural_aligned_ypr_magls; saved aligned-ypr LS reference is not present"
+)
+
+
+@dataclass(frozen=True)
+class OrientationCoefficientEntry:
+    yaw_deg: int
+    pitch_deg: int
+    roll_deg: int
+    c_ls: np.ndarray
+    c_magls: np.ndarray
+    c_ls_source: str
+    c_magls_source: str
+    coefficient_axis_semantics: str
+    reference_path: str | None = None
+    reference_sha256: str | None = None
+
+    def to_summary(self) -> dict[str, object]:
+        summary: dict[str, object] = {
+            "yaw_deg": self.yaw_deg,
+            "pitch_deg": self.pitch_deg,
+            "roll_deg": self.roll_deg,
+            "c_ls_shape": list(self.c_ls.shape),
+            "c_magls_shape": list(self.c_magls.shape),
+            "c_ls_source": self.c_ls_source,
+            "c_magls_source": self.c_magls_source,
+            "coefficient_axis_semantics": self.coefficient_axis_semantics,
+            "finite": {
+                "c_ls": bool(np.isfinite(self.c_ls).all()),
+                "c_magls": bool(np.isfinite(self.c_magls).all()),
+            },
+        }
+        if self.reference_path is not None:
+            summary["reference_path"] = self.reference_path
+        if self.reference_sha256 is not None:
+            summary["reference_sha256"] = self.reference_sha256
+        return summary
 
 
 @dataclass(frozen=True)
@@ -73,9 +122,18 @@ class FrontEndBundle:
     c_ls: np.ndarray
     c_magls: np.ndarray
     asset_bundle: AssetBundle
+    c_ls_source: str = SAME_AS_MAGLS_LS_SOURCE
+    c_magls_source: str = SAVED_ALIGNED_YPR_MAGLS_SOURCE
+    coefficient_axis_semantics: str = CANONICAL_COEFFICIENT_AXIS_SEMANTICS
+    emagls_compute_sample_rate_hz: int | None = ARRAY2BINAURAL_EMAGLS_COMPUTE_SAMPLE_RATE_HZ
+    emagls_nfft: int | None = ARRAY2BINAURAL_EMAGLS_NFFT
+    emagls_reference_yaw_deg: int | None = DEFAULT_EMAGLS_REFERENCE_YAW_DEG
+    emagls_reference_path: str | None = None
+    emagls_reference_sha256: str | None = None
+    orientation_coefficients: dict[int, OrientationCoefficientEntry] = field(default_factory=dict)
 
     def to_summary(self) -> dict[str, object]:
-        return {
+        summary: dict[str, object] = {
             "schema_version": self.schema_version,
             "interface_version": self.interface_version,
             "producer_task_id": self.producer_task_id,
@@ -91,6 +149,17 @@ class FrontEndBundle:
             "h_shape": list(self.h.shape),
             "c_ls_shape": list(self.c_ls.shape),
             "c_magls_shape": list(self.c_magls.shape),
+            "c_ls_source": self.c_ls_source,
+            "c_magls_source": self.c_magls_source,
+            "coefficient_axis_semantics": self.coefficient_axis_semantics,
+            "emagls_compute_sample_rate_hz": self.emagls_compute_sample_rate_hz,
+            "emagls_nfft": self.emagls_nfft,
+            "emagls_reference_yaw_deg": self.emagls_reference_yaw_deg,
+            "orientation_bank_yaws_deg": sorted(int(yaw) for yaw in self.orientation_coefficients),
+            "orientation_bank": {
+                str(yaw): entry.to_summary()
+                for yaw, entry in sorted(self.orientation_coefficients.items())
+            },
             "finite": {
                 "V": bool(np.isfinite(self.V).all()),
                 "h": bool(np.isfinite(self.h).all()),
@@ -98,6 +167,11 @@ class FrontEndBundle:
                 "c_magls": bool(np.isfinite(self.c_magls).all()),
             },
         }
+        if self.emagls_reference_path is not None:
+            summary["emagls_reference_path"] = self.emagls_reference_path
+        if self.emagls_reference_sha256 is not None:
+            summary["emagls_reference_sha256"] = self.emagls_reference_sha256
+        return summary
 
 
 @dataclass(frozen=True)
@@ -312,6 +386,45 @@ def _solve_magls_coefficients(
     return c_magls * equalization[:, None, :]
 
 
+def build_saved_aligned_ypr_orientation_bank(
+    repo_root: Path | str = REPO_ROOT,
+    *,
+    yaw_degs: tuple[int, ...] = DEFAULT_ORIENTATION_BANK_YAWS_DEG,
+) -> dict[int, OrientationCoefficientEntry]:
+    bank: dict[int, OrientationCoefficientEntry] = {}
+    for yaw_deg in yaw_degs:
+        saved_emagls = load_saved_aligned_ypr_emagls_reference_details(repo_root, yaw_deg=yaw_deg)
+        c_magls = saved_emagls.coefficients.astype(np.complex64, copy=True)
+        bank[int(yaw_deg)] = OrientationCoefficientEntry(
+            yaw_deg=int(yaw_deg),
+            pitch_deg=0,
+            roll_deg=0,
+            c_ls=c_magls.copy(),
+            c_magls=c_magls,
+            c_ls_source=SAME_AS_MAGLS_LS_SOURCE,
+            c_magls_source=SAVED_ALIGNED_YPR_MAGLS_SOURCE,
+            coefficient_axis_semantics=saved_emagls.canonical_axis_semantics,
+            reference_path=str(saved_emagls.path),
+            reference_sha256=saved_emagls.sha256,
+        )
+    return bank
+
+
+def select_orientation_coefficients(
+    front_end_bundle: FrontEndBundle,
+    *,
+    yaw_deg: int,
+) -> OrientationCoefficientEntry:
+    try:
+        return front_end_bundle.orientation_coefficients[int(yaw_deg)]
+    except KeyError as exc:
+        available = sorted(front_end_bundle.orientation_coefficients)
+        raise ValueError(
+            f"No orientation coefficient entry is available for yaw {yaw_deg}. "
+            f"Available yaw entries: {available}."
+        ) from exc
+
+
 def build_front_end_bundle(
     repo_root: Path | str = REPO_ROOT,
     *,
@@ -323,6 +436,12 @@ def build_front_end_bundle(
     fft_size: int = DEFAULT_FFT_SIZE,
     frequency_cut_hz: float = DEFAULT_MAGLS_F_CUT_HZ,
 ) -> FrontEndBundle:
+    if sample_rate_hz != ARRAY_SOURCE_SAMPLE_RATE_HZ or fft_size != (EXPORT_FREQUENCY_BINS - 1) * 2:
+        raise ValueError(
+            "The default Phase 02 front-end now uses the saved Array2Binaural aligned-ypr "
+            "eMagLS coefficient authority, which is available only at 32000 Hz with "
+            "1024-point FFT / 513 exported bins."
+        )
     asset_bundle = resolve_asset_bundle(
         repo_root=repo_root,
         array_id=array_id,
@@ -343,23 +462,11 @@ def build_front_end_bundle(
         fft_size=fft_size,
         array_delay_samples=DEFAULT_ARRAY_SH_DELAY_SAMPLES,
     )
-    steering_optim = _phase_aligned_steering_response(
-        asset_bundle.array_sh_path,
-        optimization_grid,
-        sample_rate_hz=sample_rate_hz,
-        fft_size=fft_size,
-        array_delay_samples=DEFAULT_ARRAY_SH_DELAY_SAMPLES,
-    )
     h = _target_response(evaluation_grid, left_hrtf_sh, right_hrtf_sh).astype(np.complex64)
-    target_optim = _target_response(optimization_grid, left_hrtf_sh, right_hrtf_sh)
-    c_ls = _solve_least_squares_coefficients(steering_optim.transpose(1, 0, 2), target_optim.transpose(1, 0, 2))
-    c_magls = _solve_magls_coefficients(
-        steering_optim.transpose(1, 0, 2),
-        target_optim.transpose(1, 0, 2),
-        sample_rate_hz=sample_rate_hz,
-        fft_size=fft_size,
-        frequency_cut_hz=frequency_cut_hz,
-    )
+    orientation_coefficients = build_saved_aligned_ypr_orientation_bank(repo_root)
+    default_orientation = orientation_coefficients[DEFAULT_EMAGLS_REFERENCE_YAW_DEG]
+    c_magls = default_orientation.c_magls.astype(np.complex64, copy=True)
+    c_ls = default_orientation.c_ls.astype(np.complex64, copy=True)
 
     return FrontEndBundle(
         schema_version=DEFAULT_SCHEMA_VERSION,
@@ -378,6 +485,15 @@ def build_front_end_bundle(
         c_ls=c_ls.astype(np.complex64),
         c_magls=c_magls.astype(np.complex64),
         asset_bundle=asset_bundle,
+        c_ls_source=SAME_AS_MAGLS_LS_SOURCE,
+        c_magls_source=SAVED_ALIGNED_YPR_MAGLS_SOURCE,
+        coefficient_axis_semantics=default_orientation.coefficient_axis_semantics,
+        emagls_compute_sample_rate_hz=ARRAY2BINAURAL_EMAGLS_COMPUTE_SAMPLE_RATE_HZ,
+        emagls_nfft=ARRAY2BINAURAL_EMAGLS_NFFT,
+        emagls_reference_yaw_deg=default_orientation.yaw_deg,
+        emagls_reference_path=default_orientation.reference_path,
+        emagls_reference_sha256=default_orientation.reference_sha256,
+        orientation_coefficients=orientation_coefficients,
     )
 
 
@@ -457,6 +573,43 @@ def _validate_bundle(bundle: FrontEndBundle) -> tuple[FrontEndValidationIssue, .
                 message="Bundle ear axes must be consistent across h, c_ls, and c_magls.",
             )
         )
+    if bundle.c_magls_source != SAVED_ALIGNED_YPR_MAGLS_SOURCE:
+        issues.append(
+            FrontEndValidationIssue(
+                code="c_magls_source_mismatch",
+                message="c_magls must use the saved Array2Binaural aligned-ypr coefficient authority.",
+            )
+        )
+    if bundle.c_ls_source != SAME_AS_MAGLS_LS_SOURCE:
+        issues.append(
+            FrontEndValidationIssue(
+                code="c_ls_source_mismatch",
+                message="c_ls source metadata must make its compatibility with c_magls explicit.",
+            )
+        )
+    for required_yaw_deg in DEFAULT_ORIENTATION_BANK_YAWS_DEG:
+        if required_yaw_deg not in bundle.orientation_coefficients:
+            issues.append(
+                FrontEndValidationIssue(
+                    code=f"orientation_yaw_{required_yaw_deg}_missing",
+                    message=f"Orientation coefficient bank must include yaw {required_yaw_deg}.",
+                )
+            )
+    for yaw_deg, entry in bundle.orientation_coefficients.items():
+        if entry.c_ls.shape != bundle.c_ls.shape or entry.c_magls.shape != bundle.c_magls.shape:
+            issues.append(
+                FrontEndValidationIssue(
+                    code=f"orientation_yaw_{yaw_deg}_shape_mismatch",
+                    message=f"Orientation yaw {yaw_deg} coefficient shapes must match the bundle coefficient shape.",
+                )
+            )
+        if not np.isfinite(entry.c_ls).all() or not np.isfinite(entry.c_magls).all():
+            issues.append(
+                FrontEndValidationIssue(
+                    code=f"orientation_yaw_{yaw_deg}_non_finite",
+                    message=f"Orientation yaw {yaw_deg} coefficients contain non-finite values.",
+                )
+            )
     for name, array in (("V", bundle.V), ("h", bundle.h), ("c_ls", bundle.c_ls), ("c_magls", bundle.c_magls)):
         if not np.isfinite(array).all():
             issues.append(

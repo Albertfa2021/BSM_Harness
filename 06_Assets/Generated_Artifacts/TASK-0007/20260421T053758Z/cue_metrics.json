@@ -1,0 +1,162 @@
+{
+  "candidates": {
+    "array2binaural_emagls_reference_yaw_0": {
+      "erb_center_freq_hz_shape": [
+        29
+      ],
+      "est_itd_lag_samples_shape": [
+        72
+      ],
+      "finite": {
+        "erb_center_freq_hz": true,
+        "est_itd_lag_samples": true,
+        "gcc_phat_est": true,
+        "gcc_phat_ref": true,
+        "ild_est": true,
+        "ild_ref": true,
+        "ref_itd_lag_samples": true
+      },
+      "gcc_phat_est_shape": [
+        72,
+        65
+      ],
+      "gcc_phat_ref_shape": [
+        72,
+        65
+      ],
+      "ild_est_shape": [
+        29,
+        72
+      ],
+      "ild_ref_shape": [
+        29,
+        72
+      ],
+      "interface_version": "1",
+      "itd_lowpass_cutoff_hz": null,
+      "metrics": {
+        "ild_error_db": 9.526687421752532,
+        "itd_proxy_error": 0.02620715039960546,
+        "mean_est_itd_lag_samples": 0.0,
+        "mean_ref_itd_lag_samples": 0.3333333333333333
+      },
+      "producer_session_id": "SESSION-P2-0008",
+      "producer_task_id": "TASK-0005",
+      "ref_itd_lag_samples_shape": [
+        72
+      ],
+      "run_config_ref": "phase02/pre_training_correctness_validation",
+      "sample_rate_hz": 32000,
+      "schema_version": "1",
+      "tau_samples": 32,
+      "tau_seconds": 0.001
+    },
+    "array2binaural_emagls_reference_yaw_90": {
+      "erb_center_freq_hz_shape": [
+        29
+      ],
+      "est_itd_lag_samples_shape": [
+        72
+      ],
+      "finite": {
+        "erb_center_freq_hz": true,
+        "est_itd_lag_samples": true,
+        "gcc_phat_est": true,
+        "gcc_phat_ref": true,
+        "ild_est": true,
+        "ild_ref": true,
+        "ref_itd_lag_samples": true
+      },
+      "gcc_phat_est_shape": [
+        72,
+        65
+      ],
+      "gcc_phat_ref_shape": [
+        72,
+        65
+      ],
+      "ild_est_shape": [
+        29,
+        72
+      ],
+      "ild_ref_shape": [
+        29,
+        72
+      ],
+      "interface_version": "1",
+      "itd_lowpass_cutoff_hz": null,
+      "metrics": {
+        "ild_error_db": 10.183272951043378,
+        "itd_proxy_error": 0.025814691019366023,
+        "mean_est_itd_lag_samples": -1.7916666666666667,
+        "mean_ref_itd_lag_samples": 0.3333333333333333
+      },
+      "producer_session_id": "SESSION-P2-0008",
+      "producer_task_id": "TASK-0005",
+      "ref_itd_lag_samples_shape": [
+        72
+      ],
+      "run_config_ref": "phase02/pre_training_correctness_validation",
+      "sample_rate_hz": 32000,
+      "schema_version": "1",
+      "tau_samples": 32,
+      "tau_seconds": 0.001
+    },
+    "project_bsm_magls": {
+      "erb_center_freq_hz_shape": [
+        29
+      ],
+      "est_itd_lag_samples_shape": [
+        72
+      ],
+      "finite": {
+        "erb_center_freq_hz": true,
+        "est_itd_lag_samples": true,
+        "gcc_phat_est": true,
+        "gcc_phat_ref": true,
+        "ild_est": true,
+        "ild_ref": true,
+        "ref_itd_lag_samples": true
+      },
+      "gcc_phat_est_shape": [
+        72,
+        65
+      ],
+      "gcc_phat_ref_shape": [
+        72,
+        65
+      ],
+      "ild_est_shape": [
+        29,
+        72
+      ],
+      "ild_ref_shape": [
+        29,
+        72
+      ],
+      "interface_version": "1",
+      "itd_lowpass_cutoff_hz": null,
+      "metrics": {
+        "ild_error_db": 9.526687421752532,
+        "itd_proxy_error": 0.02620715039960546,
+        "mean_est_itd_lag_samples": 0.0,
+        "mean_ref_itd_lag_samples": 0.3333333333333333
+      },
+      "producer_session_id": "SESSION-P2-0008",
+      "producer_task_id": "TASK-0005",
+      "ref_itd_lag_samples_shape": [
+        72
+      ],
+      "run_config_ref": "phase02/pre_training_correctness_validation",
+      "sample_rate_hz": 32000,
+      "schema_version": "1",
+      "tau_samples": 32,
+      "tau_seconds": 0.001
+    }
+  },
+  "ok": true,
+  "reference_definitions": {
+    "ild": "ERB-band AuditoryToolbox Python replication",
+    "itd": "GCC-PHAT proxy window aligned to ITD-loss paper semantics"
+  }
+}

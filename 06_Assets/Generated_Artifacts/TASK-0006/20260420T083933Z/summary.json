@@ -1,0 +1,95 @@
+{
+  "artifact_refs": {
+    "loss_trace": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0006/20260420T083933Z/loss_trace.jsonl",
+    "summary": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0006/20260420T083933Z/summary.json"
+  },
+  "baseline_name": "BSM-MagLS",
+  "final_loss_total": 1.561366081237793,
+  "ild_error": 5.321670740027731,
+  "initial_loss_total": 1.5917432308197021,
+  "interface_version": "1",
+  "itd_proxy_error": 0.004369844992243433,
+  "loss_reduced": true,
+  "loss_trace_path": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0006/20260420T083933Z/loss_trace.jsonl",
+  "loss_weights": {
+    "dmag": 0.25,
+    "ild": 0.02,
+    "itd": 0.05,
+    "mag": 1.0,
+    "reg": 0.01
+  },
+  "nmse": 0.2924126386642456,
+  "normalized_magnitude_error": 0.1284123402745945,
+  "producer_session_id": "SESSION-P2-0007",
+  "producer_task_id": "TASK-0006",
+  "run_config_ref": "phase02/default_residual_solver_short_run",
+  "schema_version": "1",
+  "selected_iteration": 2,
+  "solver_config": {
+    "alpha_init": 0.15,
+    "alpha_max": 0.35,
+    "block_count": 2,
+    "hidden_dim": 24,
+    "include_front_end_energy_descriptor": false,
+    "rank": 4
+  },
+  "solver_input_summary": {
+    "c_ls_shape": [
+      65,
+      5,
+      2
+    ],
+    "c_magls_minus_c_ls_shape": [
+      65,
+      5,
+      2
+    ],
+    "c_magls_shape": [
+      65,
+      5,
+      2
+    ],
+    "channel_names": [
+      "c_ls_left_re",
+      "c_ls_left_im",
+      "c_ls_right_re",
+      "c_ls_right_im",
+      "c_magls_left_re",
+      "c_magls_left_im",
+      "c_magls_right_re",
+      "c_magls_right_im",
+      "c_magls_minus_c_ls_left_re",
+      "c_magls_minus_c_ls_left_im",
+      "c_magls_minus_c_ls_right_re",
+      "c_magls_minus_c_ls_right_im",
+      "normalized_frequency_index",
+      "normalized_coefficient_index"
+    ],
+    "finite": {
+      "c_ls": true,
+      "c_magls": true,
+      "c_magls_minus_c_ls": true,
+      "normalized_coefficient_index": true,
+      "normalized_frequency_index": true,
+      "solver_input_packed": true
+    },
+    "interface_version": "1",
+    "normalized_coefficient_index_shape": [
+      1,
+      5
+    ],
+    "normalized_frequency_index_shape": [
+      65,
+      1
+    ],
+    "producer_session_id": "SESSION-P2-0007",
+    "producer_task_id": "TASK-0006",
+    "run_config_ref": "phase02/default_residual_solver_short_run",
+    "schema_version": "1",
+    "solver_input_packed_shape": [
+      65,
+      5,
+      14
+    ]
+  }
+}

@@ -1,0 +1,407 @@
+{
+  "candidates": {
+    "array2binaural_emagls_reference_yaw_0": {
+      "coefficient_shape": [
+        513,
+        5,
+        2
+      ],
+      "finite": {
+        "coefficients": true,
+        "response": true
+      },
+      "renderer_numpy_torch": {
+        "finite": {
+          "numpy_response": true,
+          "torch_response": true
+        },
+        "max_abs": 1.211184894600592e-07,
+        "mean_abs": 1.2611169886156404e-08,
+        "nmse": 4.4143083929675236e-15,
+        "numpy_response_shape": [
+          72,
+          513,
+          2
+        ],
+        "torch_response_shape": [
+          72,
+          513,
+          2
+        ]
+      },
+      "response_shape": [
+        72,
+        513,
+        2
+      ],
+      "target_comparison": {
+        "max_abs_error": 2.0366902351379395,
+        "mean_abs_error": 0.4336211085319519,
+        "nmse": 1.3708966970443726,
+        "normalized_magnitude_error": 0.47876036167144775
+      },
+      "worst_directions": [
+        {
+          "azimuth_deg": 0.0,
+          "direction_index": 36,
+          "elevation_deg": 0.0,
+          "max_abs": 1.1049988269805908,
+          "mean_abs": 0.5133909583091736
+        },
+        {
+          "azimuth_deg": 20.0,
+          "direction_index": 40,
+          "elevation_deg": 0.0,
+          "max_abs": 1.304717779159546,
+          "mean_abs": 0.5099344253540039
+        },
+        {
+          "azimuth_deg": -20.0,
+          "direction_index": 32,
+          "elevation_deg": 0.0,
+          "max_abs": 1.304717779159546,
+          "mean_abs": 0.5099344253540039
+        },
+        {
+          "azimuth_deg": 100.0,
+          "direction_index": 56,
+          "elevation_deg": 0.0,
+          "max_abs": 2.027276039123535,
+          "mean_abs": 0.5054215788841248
+        },
+        {
+          "azimuth_deg": -100.0,
+          "direction_index": 16,
+          "elevation_deg": 0.0,
+          "max_abs": 2.027276039123535,
+          "mean_abs": 0.5054215788841248
+        },
+        {
+          "azimuth_deg": 105.0,
+          "direction_index": 57,
+          "elevation_deg": 0.0,
+          "max_abs": 2.0366902351379395,
+          "mean_abs": 0.5049858689308167
+        },
+        {
+          "azimuth_deg": -105.0,
+          "direction_index": 15,
+          "elevation_deg": 0.0,
+          "max_abs": 2.0366902351379395,
+          "mean_abs": 0.5049858689308167
+        },
+        {
+          "azimuth_deg": 90.0,
+          "direction_index": 54,
+          "elevation_deg": 0.0,
+          "max_abs": 1.747470498085022,
+          "mean_abs": 0.5009260177612305
+        }
+      ]
+    },
+    "array2binaural_emagls_reference_yaw_90": {
+      "coefficient_shape": [
+        513,
+        5,
+        2
+      ],
+      "finite": {
+        "coefficients": true,
+        "response": true
+      },
+      "renderer_numpy_torch": {
+        "finite": {
+          "numpy_response": true,
+          "torch_response": true
+        },
+        "max_abs": 2.1696418173178245e-07,
+        "mean_abs": 1.753030609563666e-08,
+        "nmse": 5.8904238163016466e-15,
+        "numpy_response_shape": [
+          72,
+          513,
+          2
+        ],
+        "torch_response_shape": [
+          72,
+          513,
+          2
+        ]
+      },
+      "response_shape": [
+        72,
+        513,
+        2
+      ],
+      "target_comparison": {
+        "max_abs_error": 2.3491690158843994,
+        "mean_abs_error": 0.46198132634162903,
+        "nmse": 1.5557793378829956,
+        "normalized_magnitude_error": 0.5019428730010986
+      },
+      "worst_directions": [
+        {
+          "azimuth_deg": -25.0,
+          "direction_index": 31,
+          "elevation_deg": 0.0,
+          "max_abs": 1.6100281476974487,
+          "mean_abs": 0.5985668897628784
+        },
+        {
+          "azimuth_deg": 25.0,
+          "direction_index": 41,
+          "elevation_deg": 0.0,
+          "max_abs": 1.6100281476974487,
+          "mean_abs": 0.5985668897628784
+        },
+        {
+          "azimuth_deg": 20.0,
+          "direction_index": 40,
+          "elevation_deg": 0.0,
+          "max_abs": 1.359271764755249,
+          "mean_abs": 0.5966185331344604
+        },
+        {
+          "azimuth_deg": -20.0,
+          "direction_index": 32,
+          "elevation_deg": 0.0,
+          "max_abs": 1.359271764755249,
+          "mean_abs": 0.5966185331344604
+        },
+        {
+          "azimuth_deg": 10.0,
+          "direction_index": 38,
+          "elevation_deg": 0.0,
+          "max_abs": 1.4366600513458252,
+          "mean_abs": 0.565172553062439
+        },
+        {
+          "azimuth_deg": -10.0,
+          "direction_index": 34,
+          "elevation_deg": 0.0,
+          "max_abs": 1.4366600513458252,
+          "mean_abs": 0.565172553062439
+        },
+        {
+          "azimuth_deg": 15.0,
+          "direction_index": 39,
+          "elevation_deg": 0.0,
+          "max_abs": 1.5384098291397095,
+          "mean_abs": 0.5459362268447876
+        },
+        {
+          "azimuth_deg": -15.0,
+          "direction_index": 33,
+          "elevation_deg": 0.0,
+          "max_abs": 1.5384098291397095,
+          "mean_abs": 0.5459362268447876
+        }
+      ]
+    },
+    "c_ls": {
+      "coefficient_shape": [
+        513,
+        5,
+        2
+      ],
+      "finite": {
+        "coefficients": true,
+        "response": true
+      },
+      "renderer_numpy_torch": {
+        "finite": {
+          "numpy_response": true,
+          "torch_response": true
+        },
+        "max_abs": 1.211184894600592e-07,
+        "mean_abs": 1.2611169886156404e-08,
+        "nmse": 4.4143083929675236e-15,
+        "numpy_response_shape": [
+          72,
+          513,
+          2
+        ],
+        "torch_response_shape": [
+          72,
+          513,
+          2
+        ]
+      },
+      "response_shape": [
+        72,
+        513,
+        2
+      ],
+      "target_comparison": {
+        "max_abs_error": 2.0366902351379395,
+        "mean_abs_error": 0.4336211085319519,
+        "nmse": 1.3708966970443726,
+        "normalized_magnitude_error": 0.47876036167144775
+      },
+      "worst_directions": [
+        {
+          "azimuth_deg": 0.0,
+          "direction_index": 36,
+          "elevation_deg": 0.0,
+          "max_abs": 1.1049988269805908,
+          "mean_abs": 0.5133909583091736
+        },
+        {
+          "azimuth_deg": 20.0,
+          "direction_index": 40,
+          "elevation_deg": 0.0,
+          "max_abs": 1.304717779159546,
+          "mean_abs": 0.5099344253540039
+        },
+        {
+          "azimuth_deg": -20.0,
+          "direction_index": 32,
+          "elevation_deg": 0.0,
+          "max_abs": 1.304717779159546,
+          "mean_abs": 0.5099344253540039
+        },
+        {
+          "azimuth_deg": 100.0,
+          "direction_index": 56,
+          "elevation_deg": 0.0,
+          "max_abs": 2.027276039123535,
+          "mean_abs": 0.5054215788841248
+        },
+        {
+          "azimuth_deg": -100.0,
+          "direction_index": 16,
+          "elevation_deg": 0.0,
+          "max_abs": 2.027276039123535,
+          "mean_abs": 0.5054215788841248
+        },
+        {
+          "azimuth_deg": 105.0,
+          "direction_index": 57,
+          "elevation_deg": 0.0,
+          "max_abs": 2.0366902351379395,
+          "mean_abs": 0.5049858689308167
+        },
+        {
+          "azimuth_deg": -105.0,
+          "direction_index": 15,
+          "elevation_deg": 0.0,
+          "max_abs": 2.0366902351379395,
+          "mean_abs": 0.5049858689308167
+        },
+        {
+          "azimuth_deg": 90.0,
+          "direction_index": 54,
+          "elevation_deg": 0.0,
+          "max_abs": 1.747470498085022,
+          "mean_abs": 0.5009260177612305
+        }
+      ]
+    },
+    "project_bsm_magls": {
+      "coefficient_shape": [
+        513,
+        5,
+        2
+      ],
+      "finite": {
+        "coefficients": true,
+        "response": true
+      },
+      "renderer_numpy_torch": {
+        "finite": {
+          "numpy_response": true,
+          "torch_response": true
+        },
+        "max_abs": 1.211184894600592e-07,
+        "mean_abs": 1.2611169886156404e-08,
+        "nmse": 4.4143083929675236e-15,
+        "numpy_response_shape": [
+          72,
+          513,
+          2
+        ],
+        "torch_response_shape": [
+          72,
+          513,
+          2
+        ]
+      },
+      "response_shape": [
+        72,
+        513,
+        2
+      ],
+      "target_comparison": {
+        "max_abs_error": 2.0366902351379395,
+        "mean_abs_error": 0.4336211085319519,
+        "nmse": 1.3708966970443726,
+        "normalized_magnitude_error": 0.47876036167144775
+      },
+      "worst_directions": [
+        {
+          "azimuth_deg": 0.0,
+          "direction_index": 36,
+          "elevation_deg": 0.0,
+          "max_abs": 1.1049988269805908,
+          "mean_abs": 0.5133909583091736
+        },
+        {
+          "azimuth_deg": 20.0,
+          "direction_index": 40,
+          "elevation_deg": 0.0,
+          "max_abs": 1.304717779159546,
+          "mean_abs": 0.5099344253540039
+        },
+        {
+          "azimuth_deg": -20.0,
+          "direction_index": 32,
+          "elevation_deg": 0.0,
+          "max_abs": 1.304717779159546,
+          "mean_abs": 0.5099344253540039
+        },
+        {
+          "azimuth_deg": 100.0,
+          "direction_index": 56,
+          "elevation_deg": 0.0,
+          "max_abs": 2.027276039123535,
+          "mean_abs": 0.5054215788841248
+        },
+        {
+          "azimuth_deg": -100.0,
+          "direction_index": 16,
+          "elevation_deg": 0.0,
+          "max_abs": 2.027276039123535,
+          "mean_abs": 0.5054215788841248
+        },
+        {
+          "azimuth_deg": 105.0,
+          "direction_index": 57,
+          "elevation_deg": 0.0,
+          "max_abs": 2.0366902351379395,
+          "mean_abs": 0.5049858689308167
+        },
+        {
+          "azimuth_deg": -105.0,
+          "direction_index": 15,
+          "elevation_deg": 0.0,
+          "max_abs": 2.0366902351379395,
+          "mean_abs": 0.5049858689308167
+        },
+        {
+          "azimuth_deg": 90.0,
+          "direction_index": 54,
+          "elevation_deg": 0.0,
+          "max_abs": 1.747470498085022,
+          "mean_abs": 0.5009260177612305
+        }
+      ]
+    }
+  },
+  "ok": true,
+  "renderer_parity_max_abs_tolerance": 2e-05,
+  "target_shape": [
+    72,
+    513,
+    2
+  ]
+}

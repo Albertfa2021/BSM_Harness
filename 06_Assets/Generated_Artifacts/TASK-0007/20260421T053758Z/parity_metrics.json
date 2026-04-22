@@ -1,0 +1,209 @@
+{
+  "canonical_axis_semantics": "[frequency, microphone, ear]",
+  "canonical_shape": [
+    513,
+    5,
+    2
+  ],
+  "comparisons": {
+    "yaw_0": {
+      "by_ear": [
+        {
+          "ear_index": 0,
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "nmse": 0.0,
+          "rmse": 0.0
+        },
+        {
+          "ear_index": 1,
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "nmse": 0.0,
+          "rmse": 0.0
+        }
+      ],
+      "canonical_shape": [
+        513,
+        5,
+        2
+      ],
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "nmse": 0.0,
+      "passes_direct_parity": true,
+      "project_energy": 0.0397939458489418,
+      "reference_energy": 0.0397939458489418,
+      "reference_path": "/home/gsy/Documents/NN_binaural_matching/07_References/Open_Source_Baselines/Array2Binaural/compute_emagls_filters/emagls_32kHz_dft_aligned_ypr_0_0_0.npy",
+      "rmse": 0.0,
+      "source_shape": [
+        5,
+        2,
+        513
+      ],
+      "worst_frequency_bins": [
+        {
+          "frequency_bin": 512,
+          "frequency_hz": 16000.0,
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        {
+          "frequency_bin": 511,
+          "frequency_hz": 15968.75,
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        {
+          "frequency_bin": 510,
+          "frequency_hz": 15937.5,
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        {
+          "frequency_bin": 509,
+          "frequency_hz": 15906.25,
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        {
+          "frequency_bin": 508,
+          "frequency_hz": 15875.0,
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        {
+          "frequency_bin": 507,
+          "frequency_hz": 15843.75,
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        {
+          "frequency_bin": 506,
+          "frequency_hz": 15812.5,
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        {
+          "frequency_bin": 505,
+          "frequency_hz": 15781.25,
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        }
+      ]
+    },
+    "yaw_90": {
+      "by_ear": [
+        {
+          "ear_index": 0,
+          "max_abs": 1.9368528127670288,
+          "mean_abs": 0.1902584284543991,
+          "nmse": 1.5717092752456665,
+          "rmse": 0.32028496265411377
+        },
+        {
+          "ear_index": 1,
+          "max_abs": 1.390572190284729,
+          "mean_abs": 0.16061033308506012,
+          "nmse": 2.4877421855926514,
+          "rmse": 0.25057849287986755
+        }
+      ],
+      "canonical_shape": [
+        513,
+        5,
+        2
+      ],
+      "max_abs": 1.9368528127670288,
+      "mean_abs": 0.17543438076972961,
+      "nmse": 1.827160358428955,
+      "passes_direct_parity": false,
+      "project_energy": 0.0397939458489418,
+      "reference_energy": 0.04525383561849594,
+      "reference_path": "/home/gsy/Documents/NN_binaural_matching/07_References/Open_Source_Baselines/Array2Binaural/compute_emagls_filters/emagls_32kHz_dft_aligned_ypr_90_0_0.npy",
+      "rmse": 0.28755176067352295,
+      "source_shape": [
+        5,
+        2,
+        513
+      ],
+      "worst_frequency_bins": [
+        {
+          "frequency_bin": 21,
+          "frequency_hz": 656.25,
+          "max_abs": 1.031264066696167,
+          "mean_abs": 0.4832952916622162
+        },
+        {
+          "frequency_bin": 19,
+          "frequency_hz": 593.75,
+          "max_abs": 0.9308004379272461,
+          "mean_abs": 0.4796723425388336
+        },
+        {
+          "frequency_bin": 20,
+          "frequency_hz": 625.0,
+          "max_abs": 0.9922508597373962,
+          "mean_abs": 0.4786822199821472
+        },
+        {
+          "frequency_bin": 22,
+          "frequency_hz": 687.5,
+          "max_abs": 1.060037612915039,
+          "mean_abs": 0.4756612777709961
+        },
+        {
+          "frequency_bin": 23,
+          "frequency_hz": 718.75,
+          "max_abs": 1.0830280780792236,
+          "mean_abs": 0.47543850541114807
+        },
+        {
+          "frequency_bin": 18,
+          "frequency_hz": 562.5,
+          "max_abs": 0.8839294910430908,
+          "mean_abs": 0.4703829288482666
+        },
+        {
+          "frequency_bin": 341,
+          "frequency_hz": 10656.25,
+          "max_abs": 1.9128650426864624,
+          "mean_abs": 0.4681188464164734
+        },
+        {
+          "frequency_bin": 342,
+          "frequency_hz": 10687.5,
+          "max_abs": 1.88289213180542,
+          "mean_abs": 0.4673997759819031
+        }
+      ]
+    }
+  },
+  "max_abs_tolerance": 0.0005,
+  "nmse_tolerance": 1e-06,
+  "ok": true,
+  "project_shape": [
+    513,
+    5,
+    2
+  ],
+  "reference_path": "/home/gsy/Documents/NN_binaural_matching/07_References/Open_Source_Baselines/Array2Binaural/compute_emagls_filters/emagls_32kHz_dft_aligned_ypr_0_0_0.npy",
+  "reference_rotation_yaw_deg": 0,
+  "rotation_generalization": {
+    "remaining_blocker": "The default front-end now passes the saved yaw 0 coefficient contract. Generated or selectable saved-reference yaw/pitch/roll filters remain a separate rotation-generalization task.",
+    "static_reference_yaw_deg": 0,
+    "supported_in_front_end_bundle": false,
+    "yaw_90_direct_parity_with_static_default": false
+  },
+  "selected_authority": {
+    "name": "saved_array2binaural_aligned_ypr_runtime_artifact",
+    "option": "A",
+    "reason": "The checked-in aligned-ypr files are the Array2Binaural evaluation/runtime filters consumed by the reference renderer; their exact generation script is absent."
+  },
+  "source_axis_semantics": "[microphone, ear, frequency]",
+  "source_shape": [
+    5,
+    2,
+    513
+  ]
+}

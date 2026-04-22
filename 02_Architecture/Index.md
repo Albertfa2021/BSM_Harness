@@ -12,10 +12,11 @@ Related_Docs:
   - 02_Architecture/Risks/Index.md
   - 02_Architecture/Interfaces/Index.md
   - 02_Architecture/Logic/ARCH-07_Phase_02_Implementation_Blueprint.md
-Last_Updated: 2026-04-17
+  - 02_Architecture/Logic/ARCH-08_Pre_Training_Correctness_Validation_Blueprint.md
+Last_Updated: 2026-04-20
 Review_Required: Yes
 ---
 
 # Architecture Index
 
-This module stores the accepted Phase 01 architecture baseline and the Phase 02 implementation blueprint for the static single-instance BSM coefficient optimization system.
+This module stores the accepted Phase 01 architecture baseline, the Phase 02 implementation blueprint, and the pre-training correctness validation blueprint for the static single-instance BSM coefficient optimization system.
