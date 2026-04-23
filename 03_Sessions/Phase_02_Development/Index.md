@@ -19,6 +19,7 @@ Related_Docs:
   - 03_Sessions/Phase_02_Development/SESSION-P2-0017_TASK-0009_Documentation_Refresh_And_Next_Session_Handoff.md
   - 03_Sessions/Phase_02_Development/SESSION-P2-0018_TASK-0009_Official_Full513_Rerun_And_Promotion.md
   - 03_Sessions/Phase_02_Development/SESSION-P2-0019_TASK-0009_Promoted_Yaw0_NMSE_Gap_Closure_Handoff.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0020_TASK-0009_Post_Promotion_Yaw0_NMSE_Followup_Execution.md
 Last_Updated: 2026-04-23
 Review_Required: No
 ---
@@ -44,3 +45,4 @@ Review_Required: No
 - `SESSION-P2-0017_TASK-0009_Documentation_Refresh_And_Next_Session_Handoff.md`
 - `SESSION-P2-0018_TASK-0009_Official_Full513_Rerun_And_Promotion.md`
 - `SESSION-P2-0019_TASK-0009_Promoted_Yaw0_NMSE_Gap_Closure_Handoff.md`
+- `SESSION-P2-0020_TASK-0009_Post_Promotion_Yaw0_NMSE_Followup_Execution.md`

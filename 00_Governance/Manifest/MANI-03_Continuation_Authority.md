@@ -23,6 +23,7 @@ Related_Docs:
   - 03_Sessions/Phase_02_Development/SESSION-P2-0017_TASK-0009_Documentation_Refresh_And_Next_Session_Handoff.md
   - 03_Sessions/Phase_02_Development/SESSION-P2-0018_TASK-0009_Official_Full513_Rerun_And_Promotion.md
   - 03_Sessions/Phase_02_Development/SESSION-P2-0019_TASK-0009_Promoted_Yaw0_NMSE_Gap_Closure_Handoff.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0020_TASK-0009_Post_Promotion_Yaw0_NMSE_Followup_Execution.md
   - 02_Architecture/Logic/ARCH-08_Pre_Training_Correctness_Validation_Blueprint.md
   - 05_Experiments/EXP-0002_Pre_Training_Correctness_Validation/README.md
   - 05_Experiments/EXP-0004_TASK-0009_Yaw0_Followup_Screening/README.md
@@ -65,9 +66,9 @@ Review_Required: Yes
 - Latest validation development log:
   - `03_Sessions/Phase_02_Development/SESSION-P2-0009_Orientation_Training_Path_Smoke.md`
 - Planned next development log:
-  - `03_Sessions/Phase_02_Development/SESSION-P2-0019_TASK-0009_Promoted_Yaw0_NMSE_Gap_Closure_Handoff.md`
+  - `03_Sessions/Phase_02_Development/SESSION-P2-0020_TASK-0009_Post_Promotion_Yaw0_NMSE_Followup_Execution.md`
 - Latest execution development log:
-  - `03_Sessions/Phase_02_Development/SESSION-P2-0018_TASK-0009_Official_Full513_Rerun_And_Promotion.md`
+  - `03_Sessions/Phase_02_Development/SESSION-P2-0020_TASK-0009_Post_Promotion_Yaw0_NMSE_Followup_Execution.md`
 - Latest closure distillation:
   - `03_Sessions/Distillations/DIST-0007_TASK-0006_Closure_And_Phase02_Runnable_Loop.md`
 - Phase 02 implementation blueprint:
@@ -80,9 +81,9 @@ Review_Required: Yes
 - Current task:
   - `TASK-0009`
 - Current task status:
-  - first official yaw `90` screening, written yaw `0` follow-up screening, repaired-stack official rerun, and promoted yaw `0` long run are all executed; `TASK-0009` now has a stable `paper_like_accept` route and an active promoted artifact under `T09-R2-y0-s3401`
+  - first official yaw `90` screening, written yaw `0` follow-up screening, repaired-stack official rerun, promoted yaw `0` long run, and the first post-promotion yaw `0` NMSE gap-closure batch are all executed; `TASK-0009` still retains `T09-R2-y0-s3401` as the promoted authority and no new long run is authorized from the narrow follow-up batch
 - Current session authority:
-  - `03_Sessions/Phase_02_Development/SESSION-P2-0019_TASK-0009_Promoted_Yaw0_NMSE_Gap_Closure_Handoff.md`
+  - `03_Sessions/Phase_02_Development/SESSION-P2-0020_TASK-0009_Post_Promotion_Yaw0_NMSE_Followup_Execution.md`
 - Environment authority:
   - `bsm_harness_py311`
 
@@ -163,7 +164,7 @@ conda run -n bsm_harness_py311 python -m unittest discover -s bsm/tests
     - `06_Assets/Generated_Artifacts/TASK-0008/20260421T085524Z/loss_trace.jsonl`
     - `06_Assets/Generated_Artifacts/TASK-0008/20260421T085524Z/orientation_training_path.json`
 - Current opening risk:
-  - promotion is no longer blocked, but `four_down_accept` is still not met because the promoted yaw `0` long run keeps a small residual `nmse` gap against baseline.
+  - promotion is no longer blocked, but `four_down_accept` is still not met because the promoted yaw `0` long run keeps a small residual `nmse` gap against baseline and the first narrow follow-up batch did not improve on promoted authority.
 - `TASK-0009` screening execution is now recorded at:
   - `06_Assets/Generated_Artifacts/TASK-0009/T09-P1-y90-s3401/`
   - `06_Assets/Generated_Artifacts/TASK-0009/T09-P2-y90-s3401/`
@@ -184,6 +185,8 @@ conda run -n bsm_harness_py311 python -m unittest discover -s bsm/tests
   - `03_Sessions/Phase_02_Development/SESSION-P2-0016_TASK-0009_Unified_Metric_Artifact_Refresh_And_EXP0004_Update.md`
   - `03_Sessions/Phase_02_Development/SESSION-P2-0017_TASK-0009_Documentation_Refresh_And_Next_Session_Handoff.md`
   - `03_Sessions/Phase_02_Development/SESSION-P2-0018_TASK-0009_Official_Full513_Rerun_And_Promotion.md`
+  - `03_Sessions/Phase_02_Development/SESSION-P2-0019_TASK-0009_Promoted_Yaw0_NMSE_Gap_Closure_Handoff.md`
+  - `03_Sessions/Phase_02_Development/SESSION-P2-0020_TASK-0009_Post_Promotion_Yaw0_NMSE_Followup_Execution.md`
 - Screening ranking and decision:
   - `T09-P2-y90-s3401` won with `best_composite = 0.48728510709982803`
   - `T09-P3-y90-s3401` followed with `0.5424434824380371`
@@ -218,6 +221,17 @@ conda run -n bsm_harness_py311 python -m unittest discover -s bsm/tests
     - `itd = 0.016510563573170753`
     - `mag = 0.30524950299696796`
     - `nmse = 1.3829925060272217`
+  - narrow post-promotion follow-up batch:
+    - `T09-N1-y0-s3401`
+    - `T09-N2-y0-s3401`
+    - `T09-N3-y0-s3401`
+    - batch summary:
+      - `06_Assets/Generated_Artifacts/TASK-0009/yaw0_nmse_followup_SESSION-P2-0020_y0_s3401/comparison_summary.json`
+    - best narrow retained `nmse`:
+      - `T09-N3-y0-s3401 = 1.4422805309295654`
+    - decision:
+      - no narrow retained run improved on `T09-R2-y0-s3401`
+      - no new long run is authorized from this batch
   - promotion status:
     - `promotion_granted_paper_like_stable`
 - The remaining owner decision is now deferred to promoted-result follow-up:

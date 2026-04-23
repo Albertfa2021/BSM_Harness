@@ -38,7 +38,7 @@ from .residual_solver import (
 
 
 DEFAULT_PRODUCER_TASK_ID = "TASK-0009"
-DEFAULT_PRODUCER_SESSION_ID = "SESSION-P2-0018"
+DEFAULT_PRODUCER_SESSION_ID = "SESSION-P2-0020"
 DEFAULT_RUN_CONFIG_REF = "phase02/task09_planned_optimization_campaign"
 DEFAULT_ARTIFACT_ROOT = REPO_ROOT / "06_Assets" / "Generated_Artifacts" / "TASK-0009"
 DEFAULT_POWER_MODE = "ac_no_system_sleep"
@@ -115,6 +115,18 @@ LOSS_PROFILES: dict[str, LossProfile] = {
         warmup=WeightStage(mag=0.35, dmag=0.20, ild=0.35, itd=0.05, reg=0.05),
         main=WeightStage(mag=0.22, dmag=0.13, ild=0.55, itd=0.05, reg=0.05),
         final=WeightStage(mag=0.15, dmag=0.10, ild=0.65, itd=0.05, reg=0.05),
+    ),
+    "paper_ild_push_v1_late_mag_guard": LossProfile(
+        name="paper_ild_push_v1_late_mag_guard",
+        warmup=WeightStage(mag=0.35, dmag=0.20, ild=0.35, itd=0.05, reg=0.05),
+        main=WeightStage(mag=0.24, dmag=0.14, ild=0.52, itd=0.05, reg=0.05),
+        final=WeightStage(mag=0.19, dmag=0.11, ild=0.60, itd=0.05, reg=0.05),
+    ),
+    "paper_ild_push_v1_late_dmag_guard": LossProfile(
+        name="paper_ild_push_v1_late_dmag_guard",
+        warmup=WeightStage(mag=0.35, dmag=0.20, ild=0.35, itd=0.05, reg=0.05),
+        main=WeightStage(mag=0.22, dmag=0.16, ild=0.52, itd=0.05, reg=0.05),
+        final=WeightStage(mag=0.16, dmag=0.14, ild=0.60, itd=0.05, reg=0.05),
     ),
     "paper_ild_push_v2": LossProfile(
         name="paper_ild_push_v2",

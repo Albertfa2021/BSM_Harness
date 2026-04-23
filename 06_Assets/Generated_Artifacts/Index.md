@@ -12,7 +12,7 @@ Related_Docs:
   - 03_Sessions/Distillations/DIST-0007_TASK-0006_Closure_And_Phase02_Runnable_Loop.md
   - 04_Tasks/Active/TASK-0007_Pre_Training_Correctness_Validation.md
   - 04_Tasks/Active/TASK-0008_Orientation_Coefficient_Bank_And_Training_Path.md
-Last_Updated: 2026-04-22
+Last_Updated: 2026-04-23
 Review_Required: Yes
 ---
 
@@ -87,3 +87,10 @@ Review_Required: Yes
 | `TASK-0009/T09-S2-y0-s3403/comparison_summary.json` | `TASK-0009` | Second stability rerun for the promoted Stage D candidate; remains `paper_like_accept` under `seed = 3403` | retained-stability |
 | `TASK-0009/T09-R2-y0-s3401/summary.json` | `TASK-0009` | Promoted yaw `0` long run under `paper_ild_push_v1`; best iteration `7947`, final iteration `8000`, retained composite `3.430381294454479` | retained-promoted-long-run |
 | `TASK-0009/T09-R2-y0-s3401/comparison_summary.json` | `TASK-0009` | Promoted yaw `0` long-run retained-checkpoint comparison; strongly improves ILD / ITD / magnitude over baseline and satisfies `paper_like_accept`, but still misses `four_down_accept` because `nmse = 1.3829925060272217` remains slightly above baseline | retained-promoted-long-run |
+| `TASK-0009/T09-N1-y0-s3401/summary.json` | `TASK-0009` | Post-promotion narrow short-horizon control under `paper_ild_push_v1`; keeps the promoted route fixed at `1400` iterations and shows that a compressed short run does not retain the long-run authority quality | retained-narrow-followup |
+| `TASK-0009/T09-N1-y0-s3401/comparison_summary.json` | `TASK-0009` | Retained-checkpoint comparison for the short-horizon control; still beats baseline on ILD / ITD / magnitude, but `nmse = 1.4522264003753662` leaves the run below both `paper_like_accept` and promoted authority | retained-narrow-followup |
+| `TASK-0009/T09-N2-y0-s3401/summary.json` | `TASK-0009` | Post-promotion narrow follow-up with `paper_ild_push_v1_late_mag_guard`; lightly restores late `mag` pressure while keeping promoted capacity fixed | retained-narrow-followup |
+| `TASK-0009/T09-N2-y0-s3401/comparison_summary.json` | `TASK-0009` | Retained-checkpoint comparison for the late-`mag` guard variant; retained `nmse = 1.4740402698516846`, so no new long run is justified | retained-narrow-followup |
+| `TASK-0009/T09-N3-y0-s3401/summary.json` | `TASK-0009` | Post-promotion narrow follow-up with `paper_ild_push_v1_late_dmag_guard`; lightly restores late `dmag` protection while keeping promoted capacity fixed | retained-narrow-followup |
+| `TASK-0009/T09-N3-y0-s3401/comparison_summary.json` | `TASK-0009` | Retained-checkpoint comparison for the late-`dmag` guard variant; best narrow retained `nmse = 1.4422805309295654`, sufficient for `paper_like_accept` but still worse than promoted authority | retained-narrow-followup |
+| `TASK-0009/yaw0_nmse_followup_SESSION-P2-0020_y0_s3401/comparison_summary.json` | `TASK-0009` | Session-level narrow batch comparison against both `EXP-0004` baseline and promoted authority `T09-R2-y0-s3401`; records the transient `T09-R2` four-down trace window and the explicit decision `no_new_long_run` | retained-batch-summary |

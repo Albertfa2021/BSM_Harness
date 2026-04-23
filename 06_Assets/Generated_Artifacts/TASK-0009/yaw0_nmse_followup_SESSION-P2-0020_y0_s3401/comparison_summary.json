@@ -1,0 +1,171 @@
+{
+  "baseline_authority": {
+    "acceptance_rule_primary": "four_down_accept",
+    "acceptance_rule_secondary": "paper_like_accept",
+    "metric_summary": {
+      "ild_error": 12.72058527441395,
+      "itd_proxy_error": 0.02620715039960546,
+      "nmse": 1.3708966970443726,
+      "normalized_magnitude_error": 0.47876036643371495
+    },
+    "source": "EXP-0004"
+  },
+  "batch_id": "yaw0_nmse_followup_SESSION-P2-0020_y0_s3401",
+  "decision": {
+    "best_narrow_run_by_composite": "T09-N1-y0-s3401",
+    "best_narrow_run_by_nmse": "T09-N3-y0-s3401",
+    "long_run_authorized": false,
+    "reason": "No narrow retained run beat the promoted authority on NMSE or composite, and none reached four_down_accept.",
+    "result": "no_new_long_run"
+  },
+  "narrow_batch": [
+    {
+      "acceptance": "reject",
+      "delta_vs_baseline": {
+        "ild_error": -8.735909339054377,
+        "itd_proxy_error": -0.008211742856486341,
+        "nmse": 0.08132970333099365,
+        "normalized_magnitude_error": -0.1479159128228003
+      },
+      "delta_vs_promoted_authority": {
+        "ild_error": 2.2590472135024537,
+        "itd_proxy_error": 0.0014848439699483643,
+        "nmse": 0.06923389434814453,
+        "normalized_magnitude_error": 0.025594950613946676
+      },
+      "interpretation_note": "Short-horizon control. Because stage boundaries scale with total_iterations, this 1400-step run is not a strict replay of T09-R2 iterations 0-1400.",
+      "iterations": 1400,
+      "loss_profile": "paper_ild_push_v1",
+      "retained_composite_metric": 5.785742196888973,
+      "retained_metric_summary": {
+        "ild_error": 3.984675935359572,
+        "itd_proxy_error": 0.017995407543119117,
+        "nmse": 1.4522264003753662,
+        "normalized_magnitude_error": 0.33084445361091464
+      },
+      "run_id": "T09-N1-y0-s3401"
+    },
+    {
+      "acceptance": "reject",
+      "delta_vs_baseline": {
+        "ild_error": -8.722065638783507,
+        "itd_proxy_error": -0.007862212638546827,
+        "nmse": 0.10314357280731201,
+        "normalized_magnitude_error": -0.15527954361148216
+      },
+      "delta_vs_promoted_authority": {
+        "ild_error": 2.272890913773323,
+        "itd_proxy_error": 0.0018343741878878786,
+        "nmse": 0.09104776382446289,
+        "normalized_magnitude_error": 0.018231319825264825
+      },
+      "iterations": 1400,
+      "loss_profile": "paper_ild_push_v1_late_mag_guard",
+      "retained_composite_metric": 5.814385666065418,
+      "retained_metric_summary": {
+        "ild_error": 3.998519635630442,
+        "itd_proxy_error": 0.01834493776105863,
+        "nmse": 1.4740402698516846,
+        "normalized_magnitude_error": 0.3234808228222328
+      },
+      "run_id": "T09-N2-y0-s3401"
+    },
+    {
+      "acceptance": "paper_like_accept",
+      "delta_vs_baseline": {
+        "ild_error": -8.711485586911376,
+        "itd_proxy_error": -0.007580884606152978,
+        "nmse": 0.07138383388519287,
+        "normalized_magnitude_error": -0.1456850434732732
+      },
+      "delta_vs_promoted_authority": {
+        "ild_error": 2.2834709656454555,
+        "itd_proxy_error": 0.0021157022202817274,
+        "nmse": 0.05928802490234375,
+        "normalized_magnitude_error": 0.027825819963473775
+      },
+      "iterations": 1400,
+      "loss_profile": "paper_ild_push_v1_late_dmag_guard",
+      "retained_composite_metric": 5.803081807186033,
+      "retained_metric_summary": {
+        "ild_error": 4.009099687502574,
+        "itd_proxy_error": 0.01862626579345248,
+        "nmse": 1.4422805309295654,
+        "normalized_magnitude_error": 0.33307532296044173
+      },
+      "run_id": "T09-N3-y0-s3401"
+    }
+  ],
+  "priority": "narrow yaw 0 NMSE gap closure follow-up around promoted T09-R2-y0-s3401",
+  "producer_session_id": "SESSION-P2-0020",
+  "producer_task_id": "TASK-0009",
+  "promoted_authority": {
+    "acceptance": "paper_like_accept",
+    "delta_vs_baseline": {
+      "ild_error": -10.99495655255683,
+      "itd_proxy_error": -0.009696586826434705,
+      "nmse": 0.012095808982849121,
+      "normalized_magnitude_error": -0.173510863436747
+    },
+    "iterations": 8000,
+    "loss_profile": "paper_ild_push_v1",
+    "retained_composite_metric": 3.430381294454479,
+    "retained_metric_summary": {
+      "ild_error": 1.7256287218571187,
+      "itd_proxy_error": 0.016510563573170753,
+      "nmse": 1.3829925060272217,
+      "normalized_magnitude_error": 0.30524950299696796
+    },
+    "run_id": "T09-R2-y0-s3401"
+  },
+  "ranking_by_nmse": [
+    {
+      "acceptance": "paper_like_accept",
+      "nmse": 1.4422805309295654,
+      "run_id": "T09-N3-y0-s3401"
+    },
+    {
+      "acceptance": "reject",
+      "nmse": 1.4522264003753662,
+      "run_id": "T09-N1-y0-s3401"
+    },
+    {
+      "acceptance": "reject",
+      "nmse": 1.4740402698516846,
+      "run_id": "T09-N2-y0-s3401"
+    }
+  ],
+  "t09_r2_eval_trace_observation": {
+    "four_down_hits": [
+      {
+        "ild_error": 3.634389020177412,
+        "itd_proxy_error": 0.017936094654027315,
+        "iteration": 800,
+        "nmse": 1.321073293685913,
+        "normalized_magnitude_error": 0.37568440887148885
+      },
+      {
+        "ild_error": 3.610336067960066,
+        "itd_proxy_error": 0.017866336123161398,
+        "iteration": 1000,
+        "nmse": 1.3424628973007202,
+        "normalized_magnitude_error": 0.36261165025143044
+      },
+      {
+        "ild_error": 3.5778765312077208,
+        "itd_proxy_error": 0.01787899605732599,
+        "iteration": 1200,
+        "nmse": 1.3535358905792236,
+        "normalized_magnitude_error": 0.3547232144655036
+      },
+      {
+        "ild_error": 3.5370372987644925,
+        "itd_proxy_error": 0.017867190782607248,
+        "iteration": 1400,
+        "nmse": 1.3627901077270508,
+        "normalized_magnitude_error": 0.3475660199423611
+      }
+    ],
+    "note": "The promoted long run passed through a four_down window during evaluation, but the retained best_composite checkpoint drifted past that window and no archived checkpoint exists for those earlier eval points."
+  }
+}

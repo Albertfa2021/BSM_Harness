@@ -10,7 +10,7 @@ Related_Docs:
   - 06_Assets/Generated_Artifacts/Index.md
   - 04_Tasks/Completed/TASK-0006_Residual_Solver_Loss_Loop_And_Evaluation_Export.md
   - 04_Tasks/Active/TASK-0008_Orientation_Coefficient_Bank_And_Training_Path.md
-Last_Updated: 2026-04-22
+Last_Updated: 2026-04-23
 Review_Required: Yes
 ---
 
@@ -31,3 +31,4 @@ Review_Required: Yes
 | `EXP-0003_TASK-0009_Planned_Optimization_Campaign/` | Executed the first official pilot sweep under `06_Assets/Generated_Artifacts/TASK-0009/`; screening ranked `T09-P2-y90-s3401` (`best_composite = 0.48728510709982803`) ahead of `T09-P3-y90-s3401` (`0.5424434824380371`) and `T09-P1-y90-s3401` (`0.6823205258271933`), but all retained checkpoints exported `comparison_summary.json` with verdict `baseline_not_beaten`; explicit decision: `no_promotion`, so no `8000`-iteration long run was launched | 2026-04-21 |
 | `EXP-0004_TASK-0009_Yaw0_Followup_Screening/` | Rewritten to the unified paper-aligned ILD metric and full-`513` optimization authority; yaw `0` baseline is now `ild = 12.72058527441395`, `itd = 0.02620715039960546`, `mag = 0.47876036643371495`, `nmse = 1.3708966970443726`; compatible historical `TASK-0009` artifacts were refreshed under the new metric, and most now beat baseline on runner composite verdict, but none satisfy `four_down_accept` or `paper_like_accept`; explicit decision remains `no_promotion`, so the next session must launch a new official rerun rather than rely on pre-unification evidence | 2026-04-22 |
 | `EXP-0004_TASK-0009_Yaw0_Followup_Screening/` official repaired-stack rerun | Regression gate passed with `39` tests; official full-`513` rerun selected `paper_ild_push_v1` in Stage C, reached `paper_like_accept` in Stage D with `T09-I5-y0-s3401` and `T09-I6-y0-s3401`, stayed stable across seeds in `T09-S1-y0-s3402` and `T09-S2-y0-s3403`, and granted promotion; promoted long run `T09-R2-y0-s3401` retained `ild = 1.7256287218571187`, `itd = 0.016510563573170753`, `mag = 0.30524950299696796`, `nmse = 1.3829925060272217`, satisfying `paper_like_accept` but not `four_down_accept` | 2026-04-22 |
+| `EXP-0004_TASK-0009_Yaw0_Followup_Screening/` post-promotion narrow yaw `0` follow-up | Regression gate again passed with `39` tests; narrow batch `T09-N1-y0-s3401`, `T09-N2-y0-s3401`, and `T09-N3-y0-s3401` kept the promoted route fixed and tested only light late-stage `mag` / `dmag` protection; `T09-N3-y0-s3401` reached `paper_like_accept`, but all three retained runs stayed worse than promoted authority `T09-R2-y0-s3401` on retained `nmse` and composite, so the explicit decision is `no_new_long_run` | 2026-04-23 |
