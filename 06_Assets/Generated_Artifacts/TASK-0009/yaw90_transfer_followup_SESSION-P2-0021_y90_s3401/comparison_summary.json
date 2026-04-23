@@ -1,0 +1,122 @@
+{
+  "baseline_authority": {
+    "metric_summary": {
+      "ild_error": 14.648233602428062,
+      "itd_proxy_error": 0.025814691019366023,
+      "nmse": 1.5557793378829956,
+      "normalized_magnitude_error": 0.5019428959076118
+    },
+    "orientation_yaw_deg": 90,
+    "source": "comparison_baseline embedded in T09-P2-y90-s3401"
+  },
+  "batch_id": "yaw90_transfer_followup_SESSION-P2-0021_y90_s3401",
+  "decision": {
+    "best_composite_retained_run": "T09-R1-y90-s3401",
+    "best_four_down_retained_run": "T09-Y1-y90-s3401",
+    "result": "promotion_granted_yaw90_long_run_executed"
+  },
+  "historical_authority": {
+    "metrics": {
+      "ild_error": 12.426451951934242,
+      "itd_proxy_error": 0.025146023654862442,
+      "nmse": 1.5427275896072388,
+      "normalized_magnitude_error": 0.43193991205883736
+    },
+    "retained_composite_metric": 14.42626547725518,
+    "run_id": "T09-P2-y90-s3401"
+  },
+  "interpretation": {
+    "long_run_authority": "T09-R1-y90-s3401",
+    "narrow_winner": "T09-Y1-y90-s3401",
+    "note": "The long run improves ILD, ITD, NMSE, and retained composite further, but it gives back normalized magnitude relative to the yaw 90 baseline. The short batch winner remains the stricter four_down retained checkpoint."
+  },
+  "narrow_batch": [
+    {
+      "acceptance_vs_yaw90_baseline": "four_down_accept",
+      "best_iteration": 1193,
+      "delta_vs_historical_t09_p2": {
+        "ild_error": -8.748029064609375,
+        "itd_proxy_error": -0.01257663698511185,
+        "nmse": -0.07149088382720947,
+        "normalized_magnitude_error": -0.04912084770594505
+      },
+      "delta_vs_yaw90_baseline": {
+        "ild_error": -10.969810715103195,
+        "itd_proxy_error": -0.013245304349615432,
+        "nmse": -0.08454263210296631,
+        "normalized_magnitude_error": -0.11912383155471945
+      },
+      "iterations": 1200,
+      "loss_profile": "paper_ild_push_v1",
+      "retained_composite_metric": 5.545048044127539,
+      "retained_metric_summary": {
+        "ild_error": 3.6784228873248677,
+        "itd_proxy_error": 0.012569386669750592,
+        "nmse": 1.4712367057800293,
+        "normalized_magnitude_error": 0.3828190643528923
+      },
+      "run_id": "T09-Y1-y90-s3401",
+      "stop_reason": "max_iterations_reached"
+    },
+    {
+      "acceptance_vs_yaw90_baseline": "four_down_accept",
+      "best_iteration": 1196,
+      "delta_vs_historical_t09_p2": {
+        "ild_error": -8.545787396495841,
+        "itd_proxy_error": -0.01217688346852012,
+        "nmse": -0.05741739273071289,
+        "normalized_magnitude_error": -0.051540572105712446
+      },
+      "delta_vs_yaw90_baseline": {
+        "ild_error": -10.767569046989662,
+        "itd_proxy_error": -0.012845550833023701,
+        "nmse": -0.07046914100646973,
+        "normalized_magnitude_error": -0.12154355595448685
+      },
+      "iterations": 1200,
+      "loss_profile": "paper_ild_push_v1_late_dmag_guard",
+      "retained_composite_metric": 5.759343232454394,
+      "retained_metric_summary": {
+        "ild_error": 3.8806645554384005,
+        "itd_proxy_error": 0.012969140186342322,
+        "nmse": 1.4853101968765259,
+        "normalized_magnitude_error": 0.3803993399531249
+      },
+      "run_id": "T09-Y2-y90-s3401",
+      "stop_reason": "max_iterations_reached"
+    }
+  ],
+  "producer_session_id": "SESSION-P2-0021",
+  "producer_task_id": "TASK-0009",
+  "promoted_long_run": {
+    "acceptance_vs_yaw90_baseline": "reject",
+    "best_iteration": 7912,
+    "delta_vs_historical_t09_p2": {
+      "ild_error": -11.183215095003188,
+      "itd_proxy_error": -0.014434064198948918,
+      "nmse": -0.4355577230453491,
+      "normalized_magnitude_error": 0.21146796359338377
+    },
+    "delta_vs_yaw90_baseline": {
+      "ild_error": -13.404996745497009,
+      "itd_proxy_error": -0.0151027315634525,
+      "nmse": -0.44860947132110596,
+      "normalized_magnitude_error": 0.14146497974460936
+    },
+    "iterations": 8000,
+    "loss_profile": "paper_ild_push_v1",
+    "retained_composite_metric": 3.004526558601078,
+    "retained_metric_summary": {
+      "ild_error": 1.2432368569310537,
+      "itd_proxy_error": 0.010711959455913524,
+      "nmse": 1.1071698665618896,
+      "normalized_magnitude_error": 0.6434078756522211
+    },
+    "run_id": "T09-R1-y90-s3401",
+    "stop_reason": "max_iterations_reached"
+  },
+  "promotion_decision": {
+    "promoted_run": "T09-Y1-y90-s3401",
+    "reason": "Lowest retained composite among the yaw 90 transfer batch and still a strict four_down_accept relative to the yaw 90 baseline."
+  }
+}

@@ -23,6 +23,7 @@ Related_Docs:
   - 03_Sessions/Phase_02_Development/SESSION-P2-0018_TASK-0009_Official_Full513_Rerun_And_Promotion.md
   - 03_Sessions/Phase_02_Development/SESSION-P2-0019_TASK-0009_Promoted_Yaw0_NMSE_Gap_Closure_Handoff.md
   - 03_Sessions/Phase_02_Development/SESSION-P2-0020_TASK-0009_Post_Promotion_Yaw0_NMSE_Followup_Execution.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0021_TASK-0009_Yaw90_Transfer_And_Long_Run.md
   - 02_Architecture/Logic/ARCH-08_Pre_Training_Correctness_Validation_Blueprint.md
   - 05_Experiments/EXP-0002_Pre_Training_Correctness_Validation/README.md
   - 05_Experiments/EXP-0004_TASK-0009_Yaw0_Followup_Screening/README.md
@@ -48,11 +49,11 @@ Review_Required: Yes
 - Active phase is `Phase_02_Development`.
 - Active task is `TASK-0009`.
 - Latest completed task is `TASK-0006`.
-- Current planned development authority is `SESSION-P2-0020`.
-- Latest execution development authority is `SESSION-P2-0020`.
+- Current planned development authority is `SESSION-P2-0021`.
+- Latest execution development authority is `SESSION-P2-0021`.
 - Latest validation development authority is `SESSION-P2-0009`.
 - Continuation manifest is `MANI-03`.
-- Current focus is continuing `TASK-0009` from the promoted yaw `0` result after the narrow post-promotion NMSE follow-up batch, under the unified paper-aligned ILD metric, repaired energy-descriptor plumbing, and full-frequency `513` optimization authority.
+- Current focus is continuing `TASK-0009` after the successful yaw `90` transfer and promoted yaw `90` long run, under the unified paper-aligned ILD metric, repaired energy-descriptor plumbing, and full-frequency `513` optimization authority.
 - Current runtime baseline has passed: the TASK-0006 short-run optimization/export path produced finite traces and machine-readable summaries, and TASK-0007 repaired the saved aligned-ypr yaw `0` / yaw `90` coefficient selection path.
 
 ## Immediate next actions
@@ -61,13 +62,12 @@ Review_Required: Yes
 - Preserve the first official pilot matrix, the original yaw `0` follow-up artifacts, and the new official repaired-stack rerun artifacts under `06_Assets/Generated_Artifacts/TASK-0009/`.
 - Use the unified full-frequency `513` optimization and comparison authority for any further `TASK-0009` work.
 - Treat the refreshed `EXP-0004` thresholds as the only current baseline authority for yaw `0`.
-- Use `SESSION-P2-0020` plus `SESSION-P2-0018` and `T09-R2-y0-s3401` as the current continuation authority set.
-- Keep the new narrow follow-up batch summary available:
-  - `06_Assets/Generated_Artifacts/TASK-0009/yaw0_nmse_followup_SESSION-P2-0020_y0_s3401/comparison_summary.json`
-- The narrow `yaw 0` follow-up has now been executed and did not justify a new long run.
-- Current fallback priorities after the failed narrow follow-up are:
-  - transfer the promoted configuration to yaw `90`
-  - evaluate whether the accepted repaired energy-descriptor variant deserves its own long run
+- Use `SESSION-P2-0021` plus `SESSION-P2-0018`, `SESSION-P2-0020`, `T09-Y1-y90-s3401`, and `T09-R1-y90-s3401` as the current continuation authority set.
+- Keep the new yaw `90` batch summary available:
+  - `06_Assets/Generated_Artifacts/TASK-0009/yaw90_transfer_followup_SESSION-P2-0021_y90_s3401/comparison_summary.json`
+- Current next-step priorities after the successful yaw `90` transfer are:
+  - evaluate whether the repaired energy-descriptor route deserves a yaw `90` comparison batch or long run
+  - clarify whether strict four-down or retained composite should define the primary yaw `90` authority
 - Keep the TASK-0007 listening files available for owner review:
   - `06_Assets/Generated_Artifacts/TASK-0007/20260421T060742Z/audio/`
   - `06_Assets/Generated_Artifacts/TASK-0007/20260421T060742Z/listening_notes.md`
@@ -120,9 +120,14 @@ Review_Required: Yes
   - `T09-N3-y0-s3401` added late `dmag` protection and retained `nmse = 1.4422805309295654`
   - `T09-N3-y0-s3401` reached `paper_like_accept`, but none of the narrow retained runs improved on promoted authority `T09-R2-y0-s3401`
   - explicit decision: `no_new_long_run`
+- `SESSION-P2-0021` executed the documented yaw `90` fallback path:
+  - transfer batch winner `T09-Y1-y90-s3401` retained `ild = 3.6784228873248677`, `itd = 0.012569386669750592`, `mag = 0.3828190643528923`, `nmse = 1.4712367057800293`
+  - both `T09-Y1-y90-s3401` and `T09-Y2-y90-s3401` reached strict yaw `90` `four_down_accept` relative to the current yaw `90` baseline
+  - promoted long run `T09-R1-y90-s3401` completed with retained composite `3.004526558601078`
+  - `T09-R1-y90-s3401` further improved ILD / ITD / NMSE, but gave back magnitude relative to the yaw `90` baseline
 - Current TASK-0009 engineering risk:
-  - the key open question is no longer yaw `0` narrow follow-up authorization
-  - the key open question is which fallback route is worth the next official budget after the narrow yaw `0` batch failed to beat promoted authority
+  - the key open question is no longer whether yaw `90` transfer works
+  - the key open question is whether the next official budget should go to yaw `90` energy-descriptor follow-up or to clarifying which retained rule should define the primary yaw `90` authority
 - The remaining TASK-0007 human-listening gate is a separate owner-review item and should not be confused with TASK-0008 training-path preparation.
 - Closed prerequisite state:
   - `conda run -n bsm_harness_py311 python -m bsm.phase02.asset_environment smoke` passed on `2026-04-17`.

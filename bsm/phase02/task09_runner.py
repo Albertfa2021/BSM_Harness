@@ -38,7 +38,7 @@ from .residual_solver import (
 
 
 DEFAULT_PRODUCER_TASK_ID = "TASK-0009"
-DEFAULT_PRODUCER_SESSION_ID = "SESSION-P2-0020"
+DEFAULT_PRODUCER_SESSION_ID = "SESSION-P2-0021"
 DEFAULT_RUN_CONFIG_REF = "phase02/task09_planned_optimization_campaign"
 DEFAULT_ARTIFACT_ROOT = REPO_ROOT / "06_Assets" / "Generated_Artifacts" / "TASK-0009"
 DEFAULT_POWER_MODE = "ac_no_system_sleep"

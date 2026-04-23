@@ -24,6 +24,7 @@ Related_Docs:
   - 03_Sessions/Phase_02_Development/SESSION-P2-0018_TASK-0009_Official_Full513_Rerun_And_Promotion.md
   - 03_Sessions/Phase_02_Development/SESSION-P2-0019_TASK-0009_Promoted_Yaw0_NMSE_Gap_Closure_Handoff.md
   - 03_Sessions/Phase_02_Development/SESSION-P2-0020_TASK-0009_Post_Promotion_Yaw0_NMSE_Followup_Execution.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0021_TASK-0009_Yaw90_Transfer_And_Long_Run.md
   - 02_Architecture/Logic/ARCH-08_Pre_Training_Correctness_Validation_Blueprint.md
   - 05_Experiments/EXP-0002_Pre_Training_Correctness_Validation/README.md
   - 05_Experiments/EXP-0004_TASK-0009_Yaw0_Followup_Screening/README.md
@@ -66,9 +67,9 @@ Review_Required: Yes
 - Latest validation development log:
   - `03_Sessions/Phase_02_Development/SESSION-P2-0009_Orientation_Training_Path_Smoke.md`
 - Planned next development log:
-  - `03_Sessions/Phase_02_Development/SESSION-P2-0020_TASK-0009_Post_Promotion_Yaw0_NMSE_Followup_Execution.md`
+  - `03_Sessions/Phase_02_Development/SESSION-P2-0021_TASK-0009_Yaw90_Transfer_And_Long_Run.md`
 - Latest execution development log:
-  - `03_Sessions/Phase_02_Development/SESSION-P2-0020_TASK-0009_Post_Promotion_Yaw0_NMSE_Followup_Execution.md`
+  - `03_Sessions/Phase_02_Development/SESSION-P2-0021_TASK-0009_Yaw90_Transfer_And_Long_Run.md`
 - Latest closure distillation:
   - `03_Sessions/Distillations/DIST-0007_TASK-0006_Closure_And_Phase02_Runnable_Loop.md`
 - Phase 02 implementation blueprint:
@@ -81,9 +82,9 @@ Review_Required: Yes
 - Current task:
   - `TASK-0009`
 - Current task status:
-  - first official yaw `90` screening, written yaw `0` follow-up screening, repaired-stack official rerun, promoted yaw `0` long run, and the first post-promotion yaw `0` NMSE gap-closure batch are all executed; `TASK-0009` still retains `T09-R2-y0-s3401` as the promoted authority and no new long run is authorized from the narrow follow-up batch
+  - first official yaw `90` screening, written yaw `0` follow-up screening, repaired-stack official rerun, promoted yaw `0` long run, first post-promotion yaw `0` NMSE gap-closure batch, and promoted non-energy yaw `90` transfer plus long run are all executed; `TASK-0009` now has retained yaw `90` evidence at both the strict-four-down and promoted-long-run levels
 - Current session authority:
-  - `03_Sessions/Phase_02_Development/SESSION-P2-0020_TASK-0009_Post_Promotion_Yaw0_NMSE_Followup_Execution.md`
+  - `03_Sessions/Phase_02_Development/SESSION-P2-0021_TASK-0009_Yaw90_Transfer_And_Long_Run.md`
 - Environment authority:
   - `bsm_harness_py311`
 
@@ -164,7 +165,7 @@ conda run -n bsm_harness_py311 python -m unittest discover -s bsm/tests
     - `06_Assets/Generated_Artifacts/TASK-0008/20260421T085524Z/loss_trace.jsonl`
     - `06_Assets/Generated_Artifacts/TASK-0008/20260421T085524Z/orientation_training_path.json`
 - Current opening risk:
-  - promotion is no longer blocked, but `four_down_accept` is still not met because the promoted yaw `0` long run keeps a small residual `nmse` gap against baseline and the first narrow follow-up batch did not improve on promoted authority.
+  - promotion is no longer blocked, but authority interpretation is now split: yaw `90` has a strict four-down retained checkpoint under `T09-Y1-y90-s3401` and a stronger composite long-run checkpoint under `T09-R1-y90-s3401`, while yaw `0` still keeps a small residual `nmse` gap against its own baseline.
 - `TASK-0009` screening execution is now recorded at:
   - `06_Assets/Generated_Artifacts/TASK-0009/T09-P1-y90-s3401/`
   - `06_Assets/Generated_Artifacts/TASK-0009/T09-P2-y90-s3401/`
@@ -232,6 +233,20 @@ conda run -n bsm_harness_py311 python -m unittest discover -s bsm/tests
     - decision:
       - no narrow retained run improved on `T09-R2-y0-s3401`
       - no new long run is authorized from this batch
+  - yaw `90` promoted transfer follow-up:
+    - transfer batch:
+      - `T09-Y1-y90-s3401`
+      - `T09-Y2-y90-s3401`
+    - promoted long run:
+      - `T09-R1-y90-s3401`
+    - batch summary:
+      - `06_Assets/Generated_Artifacts/TASK-0009/yaw90_transfer_followup_SESSION-P2-0021_y90_s3401/comparison_summary.json`
+    - best strict four-down retained run:
+      - `T09-Y1-y90-s3401`
+    - best composite retained run:
+      - `T09-R1-y90-s3401`
+    - decision:
+      - `promotion_granted_yaw90_long_run_executed`
   - promotion status:
     - `promotion_granted_paper_like_stable`
 - The remaining owner decision is now deferred to promoted-result follow-up:
