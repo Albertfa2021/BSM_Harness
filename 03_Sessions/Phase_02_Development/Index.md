@@ -13,7 +13,13 @@ Related_Docs:
   - 03_Sessions/Phase_02_Development/SESSION-P2-0011_TASK-0009_Screening_Execution.md
   - 03_Sessions/Phase_02_Development/SESSION-P2-0012_TASK-0009_Yaw0_Followup_Planning.md
   - 03_Sessions/Phase_02_Development/SESSION-P2-0013_TASK-0009_Yaw0_Followup_Execution.md
-Last_Updated: 2026-04-21
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0014_TASK-0009_Baseline_Not_Beaten_Diagnosis_And_Repair_Plan.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0015_TASK-0009_ILD_Metric_Unification_And_Energy_Descriptor_Repair.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0016_TASK-0009_Unified_Metric_Artifact_Refresh_And_EXP0004_Update.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0017_TASK-0009_Documentation_Refresh_And_Next_Session_Handoff.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0018_TASK-0009_Official_Full513_Rerun_And_Promotion.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0019_TASK-0009_Promoted_Yaw0_NMSE_Gap_Closure_Handoff.md
+Last_Updated: 2026-04-23
 Review_Required: No
 ---
 
@@ -32,3 +38,9 @@ Review_Required: No
 - `SESSION-P2-0011_TASK-0009_Screening_Execution.md`
 - `SESSION-P2-0012_TASK-0009_Yaw0_Followup_Planning.md`
 - `SESSION-P2-0013_TASK-0009_Yaw0_Followup_Execution.md`
+- `SESSION-P2-0014_TASK-0009_Baseline_Not_Beaten_Diagnosis_And_Repair_Plan.md`
+- `SESSION-P2-0015_TASK-0009_ILD_Metric_Unification_And_Energy_Descriptor_Repair.md`
+- `SESSION-P2-0016_TASK-0009_Unified_Metric_Artifact_Refresh_And_EXP0004_Update.md`
+- `SESSION-P2-0017_TASK-0009_Documentation_Refresh_And_Next_Session_Handoff.md`
+- `SESSION-P2-0018_TASK-0009_Official_Full513_Rerun_And_Promotion.md`
+- `SESSION-P2-0019_TASK-0009_Promoted_Yaw0_NMSE_Gap_Closure_Handoff.md`

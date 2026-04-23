@@ -17,6 +17,12 @@ Related_Docs:
   - 03_Sessions/Phase_02_Development/SESSION-P2-0011_TASK-0009_Screening_Execution.md
   - 03_Sessions/Phase_02_Development/SESSION-P2-0012_TASK-0009_Yaw0_Followup_Planning.md
   - 03_Sessions/Phase_02_Development/SESSION-P2-0013_TASK-0009_Yaw0_Followup_Execution.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0014_TASK-0009_Baseline_Not_Beaten_Diagnosis_And_Repair_Plan.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0015_TASK-0009_ILD_Metric_Unification_And_Energy_Descriptor_Repair.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0016_TASK-0009_Unified_Metric_Artifact_Refresh_And_EXP0004_Update.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0017_TASK-0009_Documentation_Refresh_And_Next_Session_Handoff.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0018_TASK-0009_Official_Full513_Rerun_And_Promotion.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0019_TASK-0009_Promoted_Yaw0_NMSE_Gap_Closure_Handoff.md
   - 02_Architecture/Logic/ARCH-08_Pre_Training_Correctness_Validation_Blueprint.md
   - 05_Experiments/EXP-0002_Pre_Training_Correctness_Validation/README.md
   - 05_Experiments/EXP-0004_TASK-0009_Yaw0_Followup_Screening/README.md
@@ -28,7 +34,7 @@ Related_Docs:
   - 03_Sessions/Distillations/DIST-0006_TASK-0005_Closure_And_TASK-0006_Handoff.md
   - 02_Architecture/Logic/ARCH-07_Phase_02_Implementation_Blueprint.md
   - 06_Assets/External_Dependencies/DEP-0001_Array2Binaural_Conda_Env.md
-Last_Updated: 2026-04-22
+Last_Updated: 2026-04-23
 Review_Required: Yes
 ---
 
@@ -59,9 +65,9 @@ Review_Required: Yes
 - Latest validation development log:
   - `03_Sessions/Phase_02_Development/SESSION-P2-0009_Orientation_Training_Path_Smoke.md`
 - Planned next development log:
-  - `03_Sessions/Phase_02_Development/SESSION-P2-0012_TASK-0009_Yaw0_Followup_Planning.md`
+  - `03_Sessions/Phase_02_Development/SESSION-P2-0019_TASK-0009_Promoted_Yaw0_NMSE_Gap_Closure_Handoff.md`
 - Latest execution development log:
-  - `03_Sessions/Phase_02_Development/SESSION-P2-0013_TASK-0009_Yaw0_Followup_Execution.md`
+  - `03_Sessions/Phase_02_Development/SESSION-P2-0018_TASK-0009_Official_Full513_Rerun_And_Promotion.md`
 - Latest closure distillation:
   - `03_Sessions/Distillations/DIST-0007_TASK-0006_Closure_And_Phase02_Runnable_Loop.md`
 - Phase 02 implementation blueprint:
@@ -74,9 +80,9 @@ Review_Required: Yes
 - Current task:
   - `TASK-0009`
 - Current task status:
-  - first official yaw `90` screening and the written yaw `0` follow-up screening are both executed; explicit decision remains `no_promotion`; comparison authority is now repaired to full-frequency `513` and promoted long run remains deferred
+  - first official yaw `90` screening, written yaw `0` follow-up screening, repaired-stack official rerun, and promoted yaw `0` long run are all executed; `TASK-0009` now has a stable `paper_like_accept` route and an active promoted artifact under `T09-R2-y0-s3401`
 - Current session authority:
-  - `03_Sessions/Phase_02_Development/SESSION-P2-0013_TASK-0009_Yaw0_Followup_Execution.md`
+  - `03_Sessions/Phase_02_Development/SESSION-P2-0019_TASK-0009_Promoted_Yaw0_NMSE_Gap_Closure_Handoff.md`
 - Environment authority:
   - `bsm_harness_py311`
 
@@ -157,7 +163,7 @@ conda run -n bsm_harness_py311 python -m unittest discover -s bsm/tests
     - `06_Assets/Generated_Artifacts/TASK-0008/20260421T085524Z/loss_trace.jsonl`
     - `06_Assets/Generated_Artifacts/TASK-0008/20260421T085524Z/orientation_training_path.json`
 - Current opening risk:
-  - the first `TASK-0009` screening matrix now exists, but long-run optimization would still be premature because the screening winner did not beat the declared retained baselines.
+  - promotion is no longer blocked, but `four_down_accept` is still not met because the promoted yaw `0` long run keeps a small residual `nmse` gap against baseline.
 - `TASK-0009` screening execution is now recorded at:
   - `06_Assets/Generated_Artifacts/TASK-0009/T09-P1-y90-s3401/`
   - `06_Assets/Generated_Artifacts/TASK-0009/T09-P2-y90-s3401/`
@@ -172,6 +178,12 @@ conda run -n bsm_harness_py311 python -m unittest discover -s bsm/tests
   - `06_Assets/Generated_Artifacts/TASK-0009/T09-I1-y0-s3401/`
   - `06_Assets/Generated_Artifacts/TASK-0009/T09-I2-y0-s3401/`
   - `06_Assets/Generated_Artifacts/TASK-0009/T09-I3-y0-s3401/`
+- `TASK-0009` repair and continuation records are now:
+  - `03_Sessions/Phase_02_Development/SESSION-P2-0014_TASK-0009_Baseline_Not_Beaten_Diagnosis_And_Repair_Plan.md`
+  - `03_Sessions/Phase_02_Development/SESSION-P2-0015_TASK-0009_ILD_Metric_Unification_And_Energy_Descriptor_Repair.md`
+  - `03_Sessions/Phase_02_Development/SESSION-P2-0016_TASK-0009_Unified_Metric_Artifact_Refresh_And_EXP0004_Update.md`
+  - `03_Sessions/Phase_02_Development/SESSION-P2-0017_TASK-0009_Documentation_Refresh_And_Next_Session_Handoff.md`
+  - `03_Sessions/Phase_02_Development/SESSION-P2-0018_TASK-0009_Official_Full513_Rerun_And_Promotion.md`
 - Screening ranking and decision:
   - `T09-P2-y90-s3401` won with `best_composite = 0.48728510709982803`
   - `T09-P3-y90-s3401` followed with `0.5424434824380371`
@@ -184,15 +196,36 @@ conda run -n bsm_harness_py311 python -m unittest discover -s bsm/tests
   - all retained checkpoints again recorded `baseline_not_beaten`
   - no run reached `paper_like_accept`
   - decision: `no_promotion`
-- Current comparison-authority risk:
-  - `EXP-0004` declares a yaw `0` baseline to beat of `ild = 9.526687421752532`, `itd = 0.02620715039960546`, `mag = 0.47876036643371495`, `nmse = 1.3708966970443726`
-  - owner decision selected full-frequency `513` as the required comparison authority
-  - `task09_runner` comparison export was repaired so sliced pilot runs now evaluate retained checkpoints and baselines on the full selected-orientation bundle
-  - existing `TASK-0009` `comparison_summary.json` files were refreshed with the repaired authority
-- The remaining owner decision is explicitly deferred to the next session:
-  - decide whether yaw `0` should be rerun under the repaired authority
-  - decide whether yaw `90` should be revisited under the same full-frequency comparison policy
-  - or open a blocker if the current loss family still cannot beat the authoritative baselines
+- Current comparison / optimization authority state:
+  - `EXP-0004` now declares a unified-metric yaw `0` baseline to beat of:
+    - `ild = 12.72058527441395`
+    - `itd = 0.02620715039960546`
+    - `mag = 0.47876036643371495`
+    - `nmse = 1.3708966970443726`
+  - the official optimization and comparison resolution is now full-frequency `513`
+  - ILD training and exported evaluation now use the same paper-aligned banded metric family
+  - compatible historical `TASK-0009` comparison artifacts were refreshed to the new metric
+  - refreshed historical runs now generally beat baseline on runner composite verdict, but still do not satisfy `four_down_accept` or `paper_like_accept`
+  - `T09-I3-y0-s3401` is a pre-repair old-format artifact because its checkpoint expects the old `14`-channel solver input while the repaired energy-descriptor path expects `15`
+  - official repaired-stack rerun result:
+    - Stage C winner: `T09-P12-y0-s3401` under `paper_ild_push_v1`
+    - Stage D winner: `T09-I5-y0-s3401`
+    - repaired energy-descriptor acceptance proof: `T09-I6-y0-s3401`
+    - Stage E stability reruns: `T09-S1-y0-s3402`, `T09-S2-y0-s3403`
+    - promoted long run: `T09-R2-y0-s3401`
+  - promoted long-run retained metrics:
+    - `ild = 1.7256287218571187`
+    - `itd = 0.016510563573170753`
+    - `mag = 0.30524950299696796`
+    - `nmse = 1.3829925060272217`
+  - promotion status:
+    - `promotion_granted_paper_like_stable`
+- The remaining owner decision is now deferred to promoted-result follow-up:
+  - chosen first priority:
+    - close the remaining yaw `0` `nmse` gap
+  - deferred priorities:
+    - transfer the promoted configuration to yaw `90`
+    - decide whether the accepted repaired energy-descriptor variant merits its own long run
 
 ## Continuation Rule
 
@@ -208,6 +241,12 @@ conda run -n bsm_harness_py311 python -m unittest discover -s bsm/tests
   - `EXP-0003`
   - `EXP-0004`
   - latest validation `SESSION-P2-0009`
-  - latest planning/execution `SESSION-P2-0013`
-- The next session should use the repaired full-`513` comparison authority, then decide from recorded evidence whether yaw `0` should be rerun, whether yaw `90` should be revisited, or whether a blocker should be opened on the loss policy itself.
-- Large-scale planned optimization must continue to wait until a `TASK-0009` profile earns promotion.
+  - latest planning `SESSION-P2-0019`
+  - latest execution `SESSION-P2-0018`
+- The next session should start from:
+  - `SESSION-P2-0019`
+  - `SESSION-P2-0018`
+  - `T09-R2-y0-s3401`
+  - `official_full513_rerun_SESSION-P2-0018_y0_s3401_summary.json`
+- The next session should treat `yaw 0` `nmse` gap closure as the first and only planned narrow objective until that result is judged.
+- Large-scale planned optimization is no longer blocked on initial promotion, but further expansion should still stay narrow and documented.

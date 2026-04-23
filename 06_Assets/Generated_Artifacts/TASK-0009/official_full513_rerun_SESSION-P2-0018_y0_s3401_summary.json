@@ -1,0 +1,327 @@
+{
+  "baseline": {
+    "ild_error": 12.72058527441395,
+    "itd_proxy_error": 0.02620715039960546,
+    "nmse": 1.3708966970443726,
+    "normalized_magnitude_error": 0.47876036643371495
+  },
+  "paper_like_threshold": {
+    "ild_error": 11.5,
+    "itd_proxy_error": 0.029,
+    "nmse": 1.45,
+    "normalized_magnitude_error": 0.52
+  },
+  "producer_session_id": "SESSION-P2-0018",
+  "promotion_decision": "promotion_granted_paper_like_stable",
+  "stage_c": {
+    "runs": [
+      {
+        "acceptance_rank": 0,
+        "artifact_dir": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-P9-y0-s3401",
+        "exp0004_acceptance": "reject",
+        "loss_profile": "balanced_norm_v1",
+        "metrics": {
+          "ild_error": 5.141362490446147,
+          "itd_proxy_error": 0.016185167127449687,
+          "nmse": 1.4949909448623657,
+          "normalized_magnitude_error": 0.3265798838556696
+        },
+        "retained_composite_metric": 6.979118486291632,
+        "run_id": "T09-P9-y0-s3401",
+        "runner_verdict": "retain_learned_checkpoint",
+        "solver_config": {
+          "alpha_init": 0.15,
+          "alpha_max": 0.35,
+          "block_count": 2,
+          "hidden_dim": 24,
+          "include_front_end_energy_descriptor": false,
+          "rank": 4
+        }
+      },
+      {
+        "acceptance_rank": 0,
+        "artifact_dir": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-P10-y0-s3401",
+        "exp0004_acceptance": "reject",
+        "loss_profile": "spatial_norm_v1",
+        "metrics": {
+          "ild_error": 4.968762375766537,
+          "itd_proxy_error": 0.014509288811571217,
+          "nmse": 1.4594056606292725,
+          "normalized_magnitude_error": 0.3371611821410854
+        },
+        "retained_composite_metric": 6.779838507348466,
+        "run_id": "T09-P10-y0-s3401",
+        "runner_verdict": "retain_learned_checkpoint",
+        "solver_config": {
+          "alpha_init": 0.15,
+          "alpha_max": 0.35,
+          "block_count": 2,
+          "hidden_dim": 24,
+          "include_front_end_energy_descriptor": false,
+          "rank": 4
+        }
+      },
+      {
+        "acceptance_rank": 0,
+        "artifact_dir": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-P11-y0-s3401",
+        "exp0004_acceptance": "reject",
+        "loss_profile": "paper_ild_guarded_v1",
+        "metrics": {
+          "ild_error": 4.873041970861605,
+          "itd_proxy_error": 0.022934657509253335,
+          "nmse": 1.5298426151275635,
+          "normalized_magnitude_error": 0.3183241112676598
+        },
+        "retained_composite_metric": 6.744143354766082,
+        "run_id": "T09-P11-y0-s3401",
+        "runner_verdict": "retain_learned_checkpoint",
+        "solver_config": {
+          "alpha_init": 0.15,
+          "alpha_max": 0.35,
+          "block_count": 2,
+          "hidden_dim": 24,
+          "include_front_end_energy_descriptor": false,
+          "rank": 4
+        }
+      },
+      {
+        "acceptance_rank": 0,
+        "artifact_dir": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-P12-y0-s3401",
+        "exp0004_acceptance": "reject",
+        "loss_profile": "paper_ild_push_v1",
+        "metrics": {
+          "ild_error": 4.648010365042856,
+          "itd_proxy_error": 0.02250489050655905,
+          "nmse": 1.4963065385818481,
+          "normalized_magnitude_error": 0.3271073584517669
+        },
+        "retained_composite_metric": 6.493929152583029,
+        "run_id": "T09-P12-y0-s3401",
+        "runner_verdict": "retain_learned_checkpoint",
+        "solver_config": {
+          "alpha_init": 0.15,
+          "alpha_max": 0.35,
+          "block_count": 2,
+          "hidden_dim": 24,
+          "include_front_end_energy_descriptor": false,
+          "rank": 4
+        }
+      },
+      {
+        "acceptance_rank": 0,
+        "artifact_dir": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-P13-y0-s3401",
+        "exp0004_acceptance": "reject",
+        "loss_profile": "paper_ild_push_v2",
+        "metrics": {
+          "ild_error": 4.898719715739783,
+          "itd_proxy_error": 0.02331171913230892,
+          "nmse": 1.4818421602249146,
+          "normalized_magnitude_error": 0.32833278059924714
+        },
+        "retained_composite_metric": 6.732206375696253,
+        "run_id": "T09-P13-y0-s3401",
+        "runner_verdict": "retain_learned_checkpoint",
+        "solver_config": {
+          "alpha_init": 0.15,
+          "alpha_max": 0.35,
+          "block_count": 2,
+          "hidden_dim": 24,
+          "include_front_end_energy_descriptor": false,
+          "rank": 4
+        }
+      }
+    ],
+    "winner": {
+      "acceptance_rank": 0,
+      "artifact_dir": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-P12-y0-s3401",
+      "exp0004_acceptance": "reject",
+      "loss_profile": "paper_ild_push_v1",
+      "metrics": {
+        "ild_error": 4.648010365042856,
+        "itd_proxy_error": 0.02250489050655905,
+        "nmse": 1.4963065385818481,
+        "normalized_magnitude_error": 0.3271073584517669
+      },
+      "retained_composite_metric": 6.493929152583029,
+      "run_id": "T09-P12-y0-s3401",
+      "runner_verdict": "retain_learned_checkpoint",
+      "solver_config": {
+        "alpha_init": 0.15,
+        "alpha_max": 0.35,
+        "block_count": 2,
+        "hidden_dim": 24,
+        "include_front_end_energy_descriptor": false,
+        "rank": 4
+      }
+    }
+  },
+  "stage_d": {
+    "runs": [
+      {
+        "acceptance_rank": 0,
+        "artifact_dir": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-I4-y0-s3401",
+        "exp0004_acceptance": "reject",
+        "loss_profile": "paper_ild_push_v1",
+        "metrics": {
+          "ild_error": 5.079040428937269,
+          "itd_proxy_error": 0.019437544936005073,
+          "nmse": 1.54578697681427,
+          "normalized_magnitude_error": 0.3249876206887504
+        },
+        "retained_composite_metric": 6.969252571376294,
+        "run_id": "T09-I4-y0-s3401",
+        "runner_verdict": "retain_learned_checkpoint",
+        "solver_config": {
+          "alpha_init": 0.05,
+          "alpha_max": 0.2,
+          "block_count": 2,
+          "hidden_dim": 24,
+          "include_front_end_energy_descriptor": false,
+          "rank": 4
+        }
+      },
+      {
+        "acceptance_rank": 1,
+        "artifact_dir": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-I5-y0-s3401",
+        "exp0004_acceptance": "paper_like_accept",
+        "loss_profile": "paper_ild_push_v1",
+        "metrics": {
+          "ild_error": 4.133204120406367,
+          "itd_proxy_error": 0.018033743034823795,
+          "nmse": 1.4427196979522705,
+          "normalized_magnitude_error": 0.33803326381189425
+        },
+        "retained_composite_metric": 5.9319908252053555,
+        "run_id": "T09-I5-y0-s3401",
+        "runner_verdict": "retain_learned_checkpoint",
+        "solver_config": {
+          "alpha_init": 0.15,
+          "alpha_max": 0.35,
+          "block_count": 3,
+          "hidden_dim": 48,
+          "include_front_end_energy_descriptor": false,
+          "rank": 8
+        }
+      },
+      {
+        "acceptance_rank": 1,
+        "artifact_dir": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-I6-y0-s3401",
+        "exp0004_acceptance": "paper_like_accept",
+        "loss_profile": "paper_ild_push_v1",
+        "metrics": {
+          "ild_error": 4.256606211177914,
+          "itd_proxy_error": 0.01790328723936257,
+          "nmse": 1.41251540184021,
+          "normalized_magnitude_error": 0.3462897991424333
+        },
+        "retained_composite_metric": 6.03331469939992,
+        "run_id": "T09-I6-y0-s3401",
+        "runner_verdict": "retain_learned_checkpoint",
+        "solver_config": {
+          "alpha_init": 0.15,
+          "alpha_max": 0.35,
+          "block_count": 3,
+          "hidden_dim": 48,
+          "include_front_end_energy_descriptor": true,
+          "rank": 8
+        }
+      }
+    ],
+    "winner": {
+      "acceptance_rank": 1,
+      "artifact_dir": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-I5-y0-s3401",
+      "exp0004_acceptance": "paper_like_accept",
+      "loss_profile": "paper_ild_push_v1",
+      "metrics": {
+        "ild_error": 4.133204120406367,
+        "itd_proxy_error": 0.018033743034823795,
+        "nmse": 1.4427196979522705,
+        "normalized_magnitude_error": 0.33803326381189425
+      },
+      "retained_composite_metric": 5.9319908252053555,
+      "run_id": "T09-I5-y0-s3401",
+      "runner_verdict": "retain_learned_checkpoint",
+      "solver_config": {
+        "alpha_init": 0.15,
+        "alpha_max": 0.35,
+        "block_count": 3,
+        "hidden_dim": 48,
+        "include_front_end_energy_descriptor": false,
+        "rank": 8
+      }
+    }
+  },
+  "stage_e": {
+    "runs": [
+      {
+        "acceptance_rank": 1,
+        "artifact_dir": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-S1-y0-s3402",
+        "exp0004_acceptance": "paper_like_accept",
+        "loss_profile": "paper_ild_push_v1",
+        "metrics": {
+          "ild_error": 4.142526889290903,
+          "itd_proxy_error": 0.01945231103688949,
+          "nmse": 1.4386965036392212,
+          "normalized_magnitude_error": 0.3406381058235087
+        },
+        "retained_composite_metric": 5.941313809790523,
+        "run_id": "T09-S1-y0-s3402",
+        "runner_verdict": "retain_learned_checkpoint",
+        "solver_config": {
+          "alpha_init": 0.15,
+          "alpha_max": 0.35,
+          "block_count": 3,
+          "hidden_dim": 48,
+          "include_front_end_energy_descriptor": false,
+          "rank": 8
+        }
+      },
+      {
+        "acceptance_rank": 1,
+        "artifact_dir": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-S2-y0-s3403",
+        "exp0004_acceptance": "paper_like_accept",
+        "loss_profile": "paper_ild_push_v1",
+        "metrics": {
+          "ild_error": 4.1253186017649135,
+          "itd_proxy_error": 0.01911413892792247,
+          "nmse": 1.434096097946167,
+          "normalized_magnitude_error": 0.3470880473364116
+        },
+        "retained_composite_metric": 5.925616885975415,
+        "run_id": "T09-S2-y0-s3403",
+        "runner_verdict": "retain_learned_checkpoint",
+        "solver_config": {
+          "alpha_init": 0.15,
+          "alpha_max": 0.35,
+          "block_count": 3,
+          "hidden_dim": 48,
+          "include_front_end_energy_descriptor": false,
+          "rank": 8
+        }
+      }
+    ]
+  },
+  "stage_f": {
+    "acceptance_rank": 1,
+    "artifact_dir": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-R2-y0-s3401",
+    "exp0004_acceptance": "paper_like_accept",
+    "loss_profile": "paper_ild_push_v1",
+    "metrics": {
+      "ild_error": 1.7256287218571187,
+      "itd_proxy_error": 0.016510563573170753,
+      "nmse": 1.3829925060272217,
+      "normalized_magnitude_error": 0.30524950299696796
+    },
+    "retained_composite_metric": 3.430381294454479,
+    "run_id": "T09-R2-y0-s3401",
+    "runner_verdict": "retain_learned_checkpoint",
+    "solver_config": {
+      "alpha_init": 0.15,
+      "alpha_max": 0.35,
+      "block_count": 3,
+      "hidden_dim": 48,
+      "include_front_end_energy_descriptor": false,
+      "rank": 8
+    }
+  }
+}

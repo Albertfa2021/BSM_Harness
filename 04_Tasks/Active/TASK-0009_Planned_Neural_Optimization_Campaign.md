@@ -12,6 +12,12 @@ Related_Docs:
   - 03_Sessions/Phase_02_Development/SESSION-P2-0010_TASK-0009_Optimization_Planning.md
   - 03_Sessions/Phase_02_Development/SESSION-P2-0012_TASK-0009_Yaw0_Followup_Planning.md
   - 03_Sessions/Phase_02_Development/SESSION-P2-0013_TASK-0009_Yaw0_Followup_Execution.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0014_TASK-0009_Baseline_Not_Beaten_Diagnosis_And_Repair_Plan.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0015_TASK-0009_ILD_Metric_Unification_And_Energy_Descriptor_Repair.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0016_TASK-0009_Unified_Metric_Artifact_Refresh_And_EXP0004_Update.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0017_TASK-0009_Documentation_Refresh_And_Next_Session_Handoff.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0018_TASK-0009_Official_Full513_Rerun_And_Promotion.md
+  - 03_Sessions/Phase_02_Development/SESSION-P2-0019_TASK-0009_Promoted_Yaw0_NMSE_Gap_Closure_Handoff.md
   - 05_Experiments/EXP-0004_TASK-0009_Yaw0_Followup_Screening/README.md
   - 04_Tasks/Completed/TASK-0006_Residual_Solver_Loss_Loop_And_Evaluation_Export.md
   - 01_Charter/Goals/20260324_BSM_Neural_Optimization_Plan.md
@@ -20,7 +26,7 @@ Related_Docs:
   - 02_Architecture/Data/ARCH-04_Input_Output_Contracts.md
   - 02_Architecture/Interfaces/ARCH-06_Module_Interfaces.md
   - 00_Governance/Manifest/MANI-03_Continuation_Authority.md
-Last_Updated: 2026-04-21
+Last_Updated: 2026-04-23
 Review_Required: Yes
 ---
 
@@ -284,3 +290,105 @@ Resolved comparison-authority decision:
 - `task09_runner` comparison export was repaired so sliced pilot runs are evaluated against full selected-orientation baselines
 - existing `TASK-0009` `comparison_summary.json` artifacts were refreshed with the repaired authority
 - therefore the next `TASK-0009` step is no longer comparison-authority repair; it is deciding whether rerunning `yaw 0`, revisiting `yaw 90`, or opening a blocker is justified under the repaired policy
+
+## 2026-04-22 Repair, Refresh, And Current Continuation State
+
+`SESSION-P2-0014`, `SESSION-P2-0015`, and `SESSION-P2-0016` changed the meaning of the current `TASK-0009` evidence and are now part of the active task authority.
+
+Recorded updates:
+
+- the old training/evaluation ILD mismatch is closed:
+  - training and exported evaluation now use the same paper-aligned banded ILD metric family
+- the old energy-descriptor plumbing bug is closed:
+  - `--include-front-end-energy-descriptor` now actually changes solver input construction and artifact-visible channel counts
+- `EXP-0004` now defines the authoritative yaw `0` baseline and acceptance thresholds under the unified metric
+- compatible historical `TASK-0009` retained artifacts were refreshed under that unified metric
+- refreshed historical retained runs can beat baseline on runner composite verdict, but none satisfy:
+  - `four_down_accept`
+  - `paper_like_accept`
+- `T09-I3-y0-s3401` is now treated as an old-format pre-repair artifact because its checkpoint expects the old `14`-channel solver input while the repaired energy-descriptor path expects `15`
+
+Current next-step rule:
+
+- do not spend another session re-diagnosing the old mismatch or the fake ablation bug
+- start the next implementation session from `EXP-0004` and run a new official full-`513` rerun under the repaired metric/plumbing stack
+- keep promotion blocked unless the new retained run reaches at least `paper_like_accept`
+
+## 2026-04-22 Official Full-513 Rerun And Promotion Result
+
+`SESSION-P2-0018` executed the required repaired-stack rerun under the written `EXP-0004` authority.
+
+Recorded outcome:
+
+- regression gate passed before execution:
+  - `conda run -n bsm_harness_py311 python -m unittest discover -s bsm/tests`
+  - `39` tests passed
+- the new formal rerun artifacts record:
+  - `producer_session_id = SESSION-P2-0018`
+- Stage C winner changed from the older `balanced_norm_v1` history to:
+  - `T09-P12-y0-s3401`
+  - profile: `paper_ild_push_v1`
+  - acceptance: `reject`
+- Stage D produced the first repaired-stack accepted candidates:
+  - `T09-I5-y0-s3401`
+  - `T09-I6-y0-s3401`
+  - both reached `paper_like_accept`
+- Stage E stability reruns also reached `paper_like_accept`:
+  - `T09-S1-y0-s3402`
+  - `T09-S2-y0-s3403`
+- promotion decision therefore changed to:
+  - `promotion_granted_paper_like_stable`
+- promoted long run executed as:
+  - `T09-R2-y0-s3401`
+  - retained composite: `3.430381294454479`
+  - retained metrics:
+    - `ild_error = 1.7256287218571187`
+    - `itd_proxy_error = 0.016510563573170753`
+    - `normalized_magnitude_error = 0.30524950299696796`
+    - `nmse = 1.3829925060272217`
+  - acceptance:
+    - `paper_like_accept`
+    - not `four_down_accept`
+
+Current continuation implication:
+
+- `TASK-0009` is no longer blocked on rerun authorization.
+- The current best retained run is now:
+  - `06_Assets/Generated_Artifacts/TASK-0009/T09-R2-y0-s3401/`
+- The next engineering question is no longer whether promotion is allowed.
+- The next engineering question is which promoted-result follow-up is worth the next narrow session:
+  - close the remaining yaw `0` NMSE gap
+  - port the promoted configuration to yaw `90`
+  - or evaluate whether the accepted energy-descriptor variant deserves its own long run
+
+## 2026-04-23 Post-Promotion Follow-up Direction
+
+`SESSION-P2-0019` records the selected next-session priority after promotion.
+
+Recorded owner direction:
+
+- the next execution session should be aligned around:
+  - `yaw 0` promoted-route `nmse` gap closure
+- the next execution session should not begin with:
+  - a fresh broad search
+  - immediate yaw `90` transfer work
+  - re-diagnosing closed metric or plumbing issues
+
+Locked carry-forward authority for that next session:
+
+- promoted artifact:
+  - `06_Assets/Generated_Artifacts/TASK-0009/T09-R2-y0-s3401/`
+- promoted profile:
+  - `paper_ild_push_v1`
+- promoted solver shape:
+  - `hidden_dim = 48`
+  - `block_count = 3`
+  - `rank = 8`
+  - `alpha_init = 0.15`
+  - `alpha_max = 0.35`
+
+Recommended next-session policy:
+
+- keep the search narrow to `2` or `3` variants
+- target `four_down_accept` explicitly
+- use `T09-R2-y0-s3401` as the promoted reference to beat, not just the raw baseline

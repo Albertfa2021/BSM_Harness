@@ -1,0 +1,19 @@
+{
+  "best_checkpoint_refs": {
+    "best_composite": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-P9-y0-s3401/checkpoints/best_composite.pt",
+    "best_loss": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-P9-y0-s3401/checkpoints/best_loss.pt",
+    "last": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-P9-y0-s3401/checkpoints/last.pt"
+  },
+  "best_iteration": 1200,
+  "comparison_summary_ref": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-P9-y0-s3401/comparison_summary.json",
+  "final_iteration": 1200,
+  "manifest_ref": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-P9-y0-s3401/run_manifest.json",
+  "retained_metric_summary": {
+    "ild_error": 5.141362490446147,
+    "itd_proxy_error": 0.016185167127449687,
+    "nmse": 1.4949909448623657,
+    "normalized_magnitude_error": 0.3265798838556696
+  },
+  "selected_retained_criterion": "best_composite",
+  "stop_reason": "max_iterations_reached"
+}

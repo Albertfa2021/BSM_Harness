@@ -1,0 +1,303 @@
+{
+  "artifact_root": "/home/gsy/Documents/NN_binaural_matching/06_Assets/Generated_Artifacts/TASK-0009/T09-S1-y0-s3402",
+  "checkpoint_cadence": 200,
+  "environment_name": "bsm_harness_py311",
+  "evaluation_cadence": 100,
+  "front_end_bundle_summary": {
+    "V_shape": [
+      72,
+      513,
+      5
+    ],
+    "array_id": "Easycom",
+    "c_ls_shape": [
+      513,
+      5,
+      2
+    ],
+    "c_ls_source": "same_as_saved_array2binaural_aligned_ypr_magls; saved aligned-ypr LS reference is not present",
+    "c_magls_shape": [
+      513,
+      5,
+      2
+    ],
+    "c_magls_source": "saved_array2binaural_aligned_ypr_runtime_artifact",
+    "coefficient_axis_semantics": "[frequency, microphone, ear]",
+    "emagls_compute_sample_rate_hz": 48000,
+    "emagls_nfft": 1536,
+    "emagls_reference_path": "/home/gsy/Documents/NN_binaural_matching/07_References/Open_Source_Baselines/Array2Binaural/compute_emagls_filters/emagls_32kHz_dft_aligned_ypr_0_0_0.npy",
+    "emagls_reference_sha256": "293b39b192f28b301e765e58adbbe4be0793d0884cd5e766c462a37b5c59c428",
+    "emagls_reference_yaw_deg": 0,
+    "fft_size": 1024,
+    "finite": {
+      "V": true,
+      "c_ls": true,
+      "c_magls": true,
+      "h": true
+    },
+    "grid": {
+      "azimuth_deg_shape": [
+        72
+      ],
+      "cartesian_xyz_shape": [
+        72,
+        3
+      ],
+      "direction_count": 72,
+      "elevation_deg_shape": [
+        72
+      ]
+    },
+    "h_shape": [
+      72,
+      513,
+      2
+    ],
+    "hrtf_id": "KU100",
+    "interface_version": "1",
+    "optimization_grid": {
+      "azimuth_deg_shape": [
+        632
+      ],
+      "cartesian_xyz_shape": [
+        632,
+        3
+      ],
+      "direction_count": 632,
+      "elevation_deg_shape": [
+        632
+      ]
+    },
+    "orientation_bank": {
+      "0": {
+        "c_ls_shape": [
+          513,
+          5,
+          2
+        ],
+        "c_ls_source": "same_as_saved_array2binaural_aligned_ypr_magls; saved aligned-ypr LS reference is not present",
+        "c_magls_shape": [
+          513,
+          5,
+          2
+        ],
+        "c_magls_source": "saved_array2binaural_aligned_ypr_runtime_artifact",
+        "coefficient_axis_semantics": "[frequency, microphone, ear]",
+        "finite": {
+          "c_ls": true,
+          "c_magls": true
+        },
+        "pitch_deg": 0,
+        "reference_path": "/home/gsy/Documents/NN_binaural_matching/07_References/Open_Source_Baselines/Array2Binaural/compute_emagls_filters/emagls_32kHz_dft_aligned_ypr_0_0_0.npy",
+        "reference_sha256": "293b39b192f28b301e765e58adbbe4be0793d0884cd5e766c462a37b5c59c428",
+        "roll_deg": 0,
+        "yaw_deg": 0
+      },
+      "90": {
+        "c_ls_shape": [
+          513,
+          5,
+          2
+        ],
+        "c_ls_source": "same_as_saved_array2binaural_aligned_ypr_magls; saved aligned-ypr LS reference is not present",
+        "c_magls_shape": [
+          513,
+          5,
+          2
+        ],
+        "c_magls_source": "saved_array2binaural_aligned_ypr_runtime_artifact",
+        "coefficient_axis_semantics": "[frequency, microphone, ear]",
+        "finite": {
+          "c_ls": true,
+          "c_magls": true
+        },
+        "pitch_deg": 0,
+        "reference_path": "/home/gsy/Documents/NN_binaural_matching/07_References/Open_Source_Baselines/Array2Binaural/compute_emagls_filters/emagls_32kHz_dft_aligned_ypr_90_0_0.npy",
+        "reference_sha256": "c6ca745c04465ca5194590d504896f6e4a03ea11cf35d1e05a7100b1534da067",
+        "roll_deg": 0,
+        "yaw_deg": 90
+      }
+    },
+    "orientation_bank_yaws_deg": [
+      0,
+      90
+    ],
+    "producer_session_id": "SESSION-P2-0018",
+    "producer_task_id": "TASK-0003",
+    "run_config_ref": "phase02/task09_planned_optimization_campaign",
+    "sample_rate_hz": 32000,
+    "schema_version": "1"
+  },
+  "interface_version": "1",
+  "learning_rate": 0.0008,
+  "loss_profile": "paper_ild_push_v1",
+  "normalized_loss_policy": {
+    "ema_decay": 0.95,
+    "eps": 1e-08,
+    "final_start_iteration": 961,
+    "profile": {
+      "final": {
+        "dmag": 0.1,
+        "ild": 0.65,
+        "itd": 0.05,
+        "mag": 0.15,
+        "reg": 0.05
+      },
+      "main": {
+        "dmag": 0.13,
+        "ild": 0.55,
+        "itd": 0.05,
+        "mag": 0.22,
+        "reg": 0.05
+      },
+      "name": "paper_ild_push_v1",
+      "warmup": {
+        "dmag": 0.2,
+        "ild": 0.35,
+        "itd": 0.05,
+        "mag": 0.35,
+        "reg": 0.05
+      }
+    },
+    "rule": "Warmup accumulates frozen raw-loss scales via EMA. After warmup, optimize sum(lambda_i * loss_i / scale_i).",
+    "warmup_iterations": 120
+  },
+  "optimizer": "Adam",
+  "orientation_yaw_deg": 0,
+  "power_mode": "ac_no_system_sleep",
+  "producer_session_id": "SESSION-P2-0018",
+  "producer_task_id": "TASK-0009",
+  "run_config": {
+    "checkpoint_every": 200,
+    "early_stop_patience": 4,
+    "eval_every": 100,
+    "final_fraction": 0.2,
+    "iterations": 1200,
+    "learning_rate": 0.0008,
+    "loss_profile": "paper_ild_push_v1",
+    "max_coefficients": null,
+    "max_frequency_bins": 513,
+    "normalization_ema_decay": 0.95,
+    "normalization_eps": 1e-08,
+    "optimizer_name": "Adam",
+    "orientation_yaw_deg": 0,
+    "power_mode": "ac_no_system_sleep",
+    "retained_criterion": "best_composite",
+    "run_id": "T09-S1-y0-s3402",
+    "seed": 3402,
+    "sleep_policy_note": "AC power connected; display sleep allowed; system sleep disabled for authoritative runs.",
+    "warmup_fraction": 0.1
+  },
+  "run_config_ref": "phase02/task09_planned_optimization_campaign",
+  "run_id": "T09-S1-y0-s3402",
+  "schema_version": "1",
+  "seed": 3402,
+  "selected_orientation": {
+    "c_ls_shape": [
+      513,
+      5,
+      2
+    ],
+    "c_ls_source": "same_as_saved_array2binaural_aligned_ypr_magls; saved aligned-ypr LS reference is not present",
+    "c_magls_shape": [
+      513,
+      5,
+      2
+    ],
+    "c_magls_source": "saved_array2binaural_aligned_ypr_runtime_artifact",
+    "coefficient_axis_semantics": "[frequency, microphone, ear]",
+    "pitch_deg": 0,
+    "reference_path": "/home/gsy/Documents/NN_binaural_matching/07_References/Open_Source_Baselines/Array2Binaural/compute_emagls_filters/emagls_32kHz_dft_aligned_ypr_0_0_0.npy",
+    "reference_sha256": "293b39b192f28b301e765e58adbbe4be0793d0884cd5e766c462a37b5c59c428",
+    "roll_deg": 0,
+    "yaw_deg": 0
+  },
+  "sleep_policy_note": "AC power connected; display sleep allowed; system sleep disabled for authoritative runs.",
+  "solver_config": {
+    "alpha_init": 0.15,
+    "alpha_max": 0.35,
+    "block_count": 3,
+    "hidden_dim": 48,
+    "include_front_end_energy_descriptor": false,
+    "rank": 8
+  },
+  "solver_input_summary": {
+    "c_ls_shape": [
+      513,
+      5,
+      2
+    ],
+    "c_magls_minus_c_ls_shape": [
+      513,
+      5,
+      2
+    ],
+    "c_magls_shape": [
+      513,
+      5,
+      2
+    ],
+    "channel_names": [
+      "c_ls_left_re",
+      "c_ls_left_im",
+      "c_ls_right_re",
+      "c_ls_right_im",
+      "c_magls_left_re",
+      "c_magls_left_im",
+      "c_magls_right_re",
+      "c_magls_right_im",
+      "c_magls_minus_c_ls_left_re",
+      "c_magls_minus_c_ls_left_im",
+      "c_magls_minus_c_ls_right_re",
+      "c_magls_minus_c_ls_right_im",
+      "normalized_frequency_index",
+      "normalized_coefficient_index"
+    ],
+    "finite": {
+      "c_ls": true,
+      "c_magls": true,
+      "c_magls_minus_c_ls": true,
+      "normalized_coefficient_index": true,
+      "normalized_frequency_index": true,
+      "solver_input_packed": true
+    },
+    "interface_version": "1",
+    "normalized_coefficient_index_shape": [
+      1,
+      5
+    ],
+    "normalized_frequency_index_shape": [
+      513,
+      1
+    ],
+    "producer_session_id": "SESSION-P2-0018",
+    "producer_task_id": "TASK-0009",
+    "run_config_ref": "phase02/task09_planned_optimization_campaign",
+    "schema_version": "1",
+    "selected_orientation": {
+      "c_ls_shape": [
+        513,
+        5,
+        2
+      ],
+      "c_ls_source": "same_as_saved_array2binaural_aligned_ypr_magls; saved aligned-ypr LS reference is not present",
+      "c_magls_shape": [
+        513,
+        5,
+        2
+      ],
+      "c_magls_source": "saved_array2binaural_aligned_ypr_runtime_artifact",
+      "coefficient_axis_semantics": "[frequency, microphone, ear]",
+      "pitch_deg": 0,
+      "reference_path": "/home/gsy/Documents/NN_binaural_matching/07_References/Open_Source_Baselines/Array2Binaural/compute_emagls_filters/emagls_32kHz_dft_aligned_ypr_0_0_0.npy",
+      "reference_sha256": "293b39b192f28b301e765e58adbbe4be0793d0884cd5e766c462a37b5c59c428",
+      "roll_deg": 0,
+      "yaw_deg": 0
+    },
+    "solver_input_packed_shape": [
+      513,
+      5,
+      14
+    ]
+  }
+}
